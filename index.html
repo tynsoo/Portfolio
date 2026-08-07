@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christeen Solis | Portfolio</title>
+<meta name="description" content="Portfolio of Christeen Ann Solis — IT student specializing in Cybersecurity, designer and developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="navbar" aria-label="Primary">
+    <div class="nav-links nav-links--left">
+      <a href="#about">ABOUT</a>
+      <a href="#portfolio">PORTFOLIO</a>
+    </div>
+    <a href="index.html" class="brand" aria-label="Christeen Solis — Home">
+      <div class="brand-logo-crop">
+        <img src="images/logo.png" alt="Christeen Solis">
+      </div>
+    </a>
+    <div class="nav-links nav-links--right">
+      <a href="#contact">CONTACT</a>
+      <a href="#" class="disabled" title="Coming soon">BLOG</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-title-crop">
+      <img src="images/hero-swirl.png" alt="Portfolio" class="hero-title-img">
+    </div>
+    <h1 class="hero-subtitle">DESIGN &amp; DEVELOP</h1>
+    <a href="#portfolio" class="btn btn--primary">
+      VIEW MY WORKS
+      <svg class="icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-heading">ABOUT ME</h2>
+        <p class="about-copy">
+          Hi, I'm <span class="accent-script">Christeen Ann Solis</span>, an IT student specializing in Cybersecurity with a passion for creativity and digital design. I enjoy turning ideas into meaningful and visually engaging experiences while continuously learning and exploring new possibilities.
+        </p>
+      </div>
+      <div class="about-photo-crop">
+        <img src="images/about-photo.png" alt="Christeen Ann Solis" class="about-photo-img">
+      </div>
+    </div>
+
+    <div class="education">
+      <h2 class="section-heading section-heading--center">EDUCATION</h2>
+      <div class="education-copy">
+        <p class="education-school">Mapúa Malayan Colleges Laguna (MMCL) (2023 - on going)</p>
+        <p>4th -year Student</p>
+        <p>BS Information Technology</p>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skills-col">
+        <h3 class="skills-heading">SOFTWARE</h3>
+        <div class="skills-icons">
+          <div class="icon-crop icon-crop--sw1"><img src="images/software-icon-1.png" alt="Adobe Photoshop"></div>
+          <div class="icon-crop icon-crop--sw2"><img src="images/software-icon-2.png" alt="Figma"></div>
+          <div class="icon-crop icon-crop--sw3"><img src="images/software-icon-3.png" alt="Canva"></div>
+        </div>
+      </div>
+      <div class="skills-col">
+        <h3 class="skills-heading">TECH STACK</h3>
+        <div class="skills-icons skills-icons--tech">
+          <img src="images/tech-icon-1.png" alt="Python">
+          <img src="images/tech-icon-2.png" alt="HTML5">
+          <img src="images/tech-icon-3.png" alt="CSS3">
+          <img src="images/tech-icon-4.png" alt="JavaScript">
+          <img src="images/tech-icon-5.png" alt="C">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="portfolio">
+    <h2 class="section-heading section-heading--center">DESIGNS &amp; PROJECTS</h2>
+
+    <div class="filter-bar" role="tablist" aria-label="Filter projects">
+      <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <span aria-hidden="true">/</span>
+      <button class="filter-btn" data-filter="design" role="tab" aria-selected="false">DESIGN</button>
+      <span aria-hidden="true">/</span>
+      <button class="filter-btn" data-filter="development" role="tab" aria-selected="false">DEVELOPMENT</button>
+    </div>
+
+    <div class="project-grid">
+      <a class="project-card" href="designs-logo.html" data-category="design">
+        <span class="project-eyebrow">LOGO</span>
+        <img src="images/thumb-logo.jpg" alt="INFOTECH Society logo design" class="project-thumb">
+        <p class="project-desc">Custom logo concepts created to establish strong brand identities through thoughtful typography, color, and symbolism.</p>
+      </a>
+
+      <a class="project-card" href="designs-social-media.html" data-category="design">
+        <span class="project-eyebrow">SOCIAL MEDIA POST</span>
+        <img src="images/thumb-social-media.jpg" alt="Social media post designs" class="project-thumb">
+        <p class="project-desc">A collection of promotional materials designed for organizations and events, focusing on clear communication, visual consistency, and audience engagement.</p>
+      </a>
+
+      <a class="project-card" href="designs-development.html" data-category="development">
+        <span class="project-eyebrow">PROJECTS</span>
+        <img src="images/thumb-personal-projects.jpg" alt="Personal development projects" class="project-thumb project-thumb--wide">
+        <p class="project-desc">PERSONAL PROJECTS</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="section-heading section-heading--center">LET'S CONNECT</h2>
+    <form class="contact-form" id="contact-form">
+      <h3>Send me a Message</h3>
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit" class="btn btn--primary btn--send">SEND</button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-copyright">© 2026 Designed by Christeen Ann Solis</p>
+  <a class="footer-email" href="mailto:tynsolis2209@gmail.com">tynsolis2209@gmail.com</a>
+  <div class="footer-social">
+    <a href="https://github.com/tynsoo" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="images/social-icon-1.png" alt=""></a>
+    <a href="https://www.linkedin.com/in/christeen-solis?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="images/social-icon-2.png" alt=""></a>
+    <a href="https://www.instagram.com/tyn.soo?igsh=MTdlZGpkN283NTlxcA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/social-icon-3.png" alt=""></a>
+    <a href="https://m.me/tyn.solis22/" target="_blank" rel="noopener noreferrer" aria-label="Messenger"><img src="images/social-icon-facebook.svg" alt=""></a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
