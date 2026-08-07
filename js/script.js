@@ -62,22 +62,47 @@ filterButtons.forEach((btn) => {
   });
 });
 
-// Contact form -> mailto
+// Contact form -> Web3Forms (emails straight to your inbox, no backend needed)
 const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    if (formStatus) {
+      formStatus.textContent = '';
+      formStatus.classList.remove('is-success', 'is-error');
+    }
 
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\n\n${message}`
-    );
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(contactForm),
+      });
+      const data = await res.json();
 
-    window.location.href = `mailto:tynsolis2209@gmail.com?subject=${subject}&body=${body}`;
+      if (data.success) {
+        contactForm.reset();
+        if (formStatus) {
+          formStatus.textContent = 'Thanks! Your message has been sent.';
+          formStatus.classList.add('is-success');
+        }
+      } else {
+        if (formStatus) {
+          formStatus.textContent = data.message || 'Something went wrong. Please try again.';
+          formStatus.classList.add('is-error');
+        }
+      }
+    } catch (err) {
+      if (formStatus) {
+        formStatus.textContent = 'Could not reach the server. Please try again later.';
+        formStatus.classList.add('is-error');
+      }
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }

@@ -126,8 +126,12 @@
 
   <section id="contact" class="contact">
     <h2 class="section-heading section-heading--center">LET'S CONNECT</h2>
-    <form class="contact-form" id="contact-form">
+    <form class="contact-form" id="contact-form" method="POST" action="https://api.web3forms.com/submit">
       <h3>Send me a Message</h3>
+
+      <input type="hidden" name="access_key" value="1987e600-910d-436a-a470-4ddef07cf872">
+      <input type="hidden" name="subject" value="New message from your portfolio site">
+      <input type="hidden" name="from_name" value="Portfolio Contact Form">
 
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required>
@@ -141,7 +145,13 @@
       <label for="message">Message</label>
       <textarea id="message" name="message" rows="4" required></textarea>
 
+      <div class="hp-field" aria-hidden="true">
+        <label for="botcheck">Leave this field empty</label>
+        <input type="text" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+      </div>
+
       <button type="submit" class="btn btn--primary btn--send">SEND</button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 

@@ -401,6 +401,27 @@ section { padding: 80px 24px; }
 
 .btn--send { align-self: center; margin-top: 24px; }
 
+.btn--send:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  margin: 12px 0 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.form-status.is-success { color: #2f7d32; }
+.form-status.is-error { color: var(--red); }
+
 /* ===== Footer ===== */
 .site-footer {
   background: var(--brown);
