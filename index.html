@@ -1,173 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Christeen Solis | Portfolio</title>
-<meta name="description" content="Portfolio of Christeen Ann Solis — IT student specializing in Cybersecurity, designer and developer.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Christeen Solis Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio of Christeen Solis: creative designer and aspiring front-end developer, BS IT (Cybersecurity) student at Mapúa MCL.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: an "operating system" desk. Folder icons, a quick-look window and a file table,
+   on warm paper, with big grotesk + italic serif headlines and monospace system labels.
+   ✏️ To change colors, edit the tokens below. */
+:root {
+  --bg: #fffcf2;        /* page paper, warm butter white */
+  --panel: #fbf3d8;     /* banded sections, cards */
+  --window: #fffef8;    /* quick-look window */
+  --ink: #23262f;       /* main text, dark buttons (soft charcoal) */
+  --muted: #625a47;     /* secondary text (dark enough to read) */
+  --line: #ebdfb2;      /* borders */
+  --accent: #6b5815;    /* deep honey: accent TEXT on light backgrounds */
+  --fill: #fff4c6;      /* pastel yellow, same as the folder icon */
+  --fill-strong: #f8e8a4; /* slightly deeper pastel for buttons & selected tabs */
+  --on-fill: #23262f;   /* text on pastel yellow */
+  --accent-on-ink: #fff4c6; /* accent on the dark charcoal card */
+  --accent-ink: #23262f;
+  --sec-bg: #23262f; --sec-fg: #fffcf2; /* Cybersecurity highlight card */
+  --dot1: #e8957d; --dot2: #f2cf5b; --dot3: #8fb58f;
+
+  --f-display: "Syne", "Arial Black", system-ui, sans-serif;
+  --f-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --wrap: 1200px;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* Each full-width band gets the side gutter on its inner wrapper */
+.wrap {
+  max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 700px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+.mono { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0; }
+.serif-i { font-family: var(--f-serif); font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -0.01em; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+.section { padding-block: clamp(56px, 8vw, 96px); }
+.band { background: var(--panel); }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 36px; }
+.section-head h2 { font-family: var(--f-display); font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.02em; margin-top: 8px; }
+.section-head p { max-width: 42ch; margin: 0; color: var(--muted); }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 20px; min-height: 60px; }
+.dots { display: flex; gap: 6px; }
+.dots span { width: 11px; height: 11px; border-radius: 50%; background: var(--dot1); }
+.dots span:nth-child(2) { background: var(--dot2); } .dots span:nth-child(3) { background: var(--dot3); }
+.logo { font-family: var(--f-mono); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; }
+.logo b { color: var(--accent); }
+.nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav a { font-family: var(--f-mono); font-size: 0.82rem; text-decoration: none; padding: 6px 10px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+.nav a:hover, .nav a.active { color: var(--ink); background: var(--panel); }
+.status { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--panel); padding: 4px 10px; border-radius: 999px; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dot3); box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot3) 25%, transparent); }
+.clock { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) { .clock { display: none; } }
+@media (max-width: 700px) {
+  .topbar .wrap { flex-wrap: wrap; gap: 6px 14px; padding-block: 10px; }
+  .status { margin-left: auto; }
+  .nav { order: 3; width: 100%; margin-inline: -10px; }
+  .dots { display: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(40px, 6vw, 72px) 32px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+.tag { display: inline-flex; gap: 8px; align-items: center; background: var(--fill); border: 1px solid var(--fill-strong); border-radius: 6px; padding: 4px 10px; font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-fill); font-weight: 600; }
+.hero h1 { margin-top: 22px; font-family: var(--f-display); font-weight: 700; font-size: clamp(2.5rem, 5.6vw, 4.6rem); line-height: 1; letter-spacing: -0.035em; }
+.hero h1 .serif-i { font-size: 1.12em; line-height: 0.9; }
+.hero-lede { margin: 24px 0 0; max-width: 52ch; font-size: 1.1rem; color: var(--muted); }
+.hero-lede strong { color: var(--ink); font-weight: 600; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); padding: 12px 18px; border-radius: 8px; font-family: var(--f-mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; transition: transform .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.accent { background: var(--fill-strong); border-color: color-mix(in srgb, var(--fill-strong) 70%, var(--on-fill)); color: var(--on-fill); }
+
+/* Quick-look window */
+.window { background: var(--window); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--ink) 35%, transparent); overflow: hidden; min-width: 0; }
+.win-bar { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.crumbs { font-family: var(--f-mono); font-size: 0.74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.crumbs b { color: var(--ink); }
+.win-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
+@media (max-width: 560px) { .win-body { grid-template-columns: 1fr; } }
+.preview { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 8px; overflow: hidden; position: relative; background: var(--ink); color: var(--bg); display: grid; place-items: center; text-align: center; padding: 16px; }
+.preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.preview.logo img { position: static; width: auto; height: 78%; object-fit: contain; border-radius: 6px; }
+.preview.logo { background: #070648; }
+.preview .ph-title { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; }
+.preview .ph-note { position: absolute; left: 10px; bottom: 8px; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; opacity: 0.75; text-transform: uppercase; }
+.props { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--panel); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.props dl { margin: 0; display: grid; gap: 10px; }
+.props dt { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.props dd { margin: 2px 0 0; font-family: var(--f-mono); font-size: 0.82rem; font-weight: 500; }
+.props .btn { margin-top: auto; justify-content: center; padding: 10px 12px; }
+.win-desc { padding: 0 16px 16px; margin: 0; color: var(--muted); font-size: 0.95rem; }
+.posts { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.posts[hidden] { display: none; }
+.posts-list { display: flex; flex-wrap: wrap; gap: 6px; max-height: 120px; overflow-y: auto; }
+.posts .empty { color: var(--muted); font-size: 0.92rem; margin: 0; }
+.posts-list span { font-family: var(--f-mono); font-size: 0.72rem; border: 1px dashed var(--line); padding: 3px 8px; border-radius: 5px; color: var(--muted); }
+.posts-list a { font-family: var(--f-mono); font-size: 0.72rem; text-decoration: none; border: 1px solid var(--line); background: var(--panel); padding: 3px 8px; border-radius: 5px; white-space: nowrap; }
+.posts-list a:hover { border-color: var(--accent); color: var(--accent); }
+.win-tabs { display: flex; gap: 6px; padding: 10px 14px; border-top: 1px solid var(--line); background: var(--panel); overflow-x: auto; }
+.win-tabs button { font-family: var(--f-mono); font-size: 0.72rem; border: 1px solid transparent; background: transparent; color: var(--muted); padding: 4px 8px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
+.win-tabs button[aria-pressed="true"] { background: var(--fill-strong); color: var(--on-fill); }
+
+/* Folders */
+.folders { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+@media (max-width: 1000px) { .folders { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.folder { text-align: left; cursor: pointer; font: inherit; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .15s ease, border-color .15s ease; }
+.folder:hover { transform: translateY(-3px); border-color: var(--accent); }
+.folder[aria-pressed="true"] { background: var(--fill-strong); color: var(--on-fill); border-color: color-mix(in srgb, var(--fill-strong) 75%, var(--on-fill)); box-shadow: 0 10px 24px -14px color-mix(in srgb, #6b5815 60%, transparent); }
+.folder[aria-pressed="true"] .f-meta, .folder[aria-pressed="true"] .f-count { color: color-mix(in srgb, var(--on-fill) 72%, transparent); }
+.folder .f-icon { width: 54px; height: auto; filter: drop-shadow(0 0 0.6px color-mix(in srgb, #5b4a1c 70%, transparent)) drop-shadow(0 3px 4px color-mix(in srgb, #0f1b2d 22%, transparent)); transition: transform .15s ease; }
+.folder:hover .f-icon { transform: rotate(-4deg) scale(1.06); }
+.folder .f-thumb { width: 30px; height: 30px; border-radius: 6px; object-fit: cover; }
+.folder svg { width: 30px; height: 26px; color: var(--accent); }
+.folder[aria-pressed="true"] svg { color: var(--bg); }
+.f-top { display: flex; justify-content: space-between; align-items: start; }
+.f-count { font-family: var(--f-mono); font-size: 0.7rem; color: var(--muted); }
+.f-name { font-family: var(--f-serif); font-size: 1.3rem; line-height: 1.1; }
+.f-meta { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.hint { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 18px; color: var(--muted); }
+
+/* ---------- Works table ---------- */
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.filters button { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--fill-strong); color: var(--on-fill); border-color: var(--fill-strong); }
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 10px 12px; border-bottom: 1px solid var(--ink); }
+.table td { padding: 18px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table .idx { font-family: var(--f-mono); font-size: 0.8rem; color: var(--accent); font-variant-numeric: tabular-nums; width: 48px; }
+.w-title { font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.01em; }
+.w-sub { font-family: var(--f-serif); font-style: italic; color: var(--muted); font-size: 1.02rem; }
+.w-stack { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); }
+.w-year { font-family: var(--f-mono); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.w-link { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; text-decoration: none; border: 1px solid var(--ink); padding: 5px 10px; border-radius: 5px; white-space: nowrap; }
+.w-link:hover { background: var(--ink); color: var(--bg); }
+.example { display: inline-block; margin-left: 8px; vertical-align: middle; font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px dashed var(--accent); padding: 1px 6px; border-radius: 4px; }
+@media (max-width: 760px) {
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table tr { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); padding: 14px 16px; margin-bottom: 12px; display: grid; gap: 6px; }
+  .table td { border: 0; padding: 0; }
+  .table .idx { width: auto; }
+  .table td.w-act { margin-top: 6px; }
+}
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+.photo-win { margin: 0 0 28px; width: min(260px, 70%); background: var(--window); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--ink) 40%, transparent); transform: rotate(-2deg); }
+.photo-win .win-bar { padding: 8px 12px; gap: 10px; }
+.photo-win .dots span { width: 9px; height: 9px; }
+.photo-win img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) { .photo-win { transition: transform .25s ease; } .photo-win:hover { transform: rotate(0deg); } }
+.about h2.big { font-family: var(--f-serif); font-weight: 400; font-size: clamp(2.4rem, 5.4vw, 4rem); line-height: 1; letter-spacing: -0.02em; margin: 14px 0 24px; }
+.about p { max-width: 60ch; color: var(--muted); margin: 0 0 16px; }
+.about p strong { color: var(--ink); font-weight: 600; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+@media (max-width: 520px) { .facts { grid-template-columns: 1fr; } }
+.fact { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: var(--panel); }
+.fact b { display: block; font-family: var(--f-display); font-size: 1.05rem; margin-bottom: 2px; }
+.fact span { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.stack-head { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.stack-head .mono:first-child { font-weight: 600; }
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 560px) { .skills { grid-template-columns: 1fr; } }
+.skill { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.skill h3 { font-family: var(--f-serif); font-weight: 400; font-size: 1.5rem; line-height: 1.1; }
+.skill ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; font-family: var(--f-mono); font-size: 0.8rem; }
+.skill li::before { content: "› "; color: var(--accent); }
+.skill.wide { grid-column: 1 / -1; }
+.skill.wide ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+@media (max-width: 560px) { .skill.wide ul { grid-template-columns: 1fr; } }
+.skill.sec { background: var(--sec-bg); color: var(--sec-fg); border-color: var(--sec-bg); }
+.skill.sec .eyebrow { color: var(--accent-on-ink); }
+.skill.sec li::before { color: var(--accent-on-ink); }
+
+/* ---------- Certifications ---------- */
+.certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .certs { grid-template-columns: 1fr; } }
+.cert { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.cert .seal { width: 44px; height: 44px; border-radius: 50%; border: 1.5px dashed var(--accent); display: grid; place-items: center; font-family: var(--f-mono); font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+.cert h3 { font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; line-height: 1.25; }
+.cert .issuer { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.cert a { margin-top: auto; font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
+
+/* ---------- Contact ---------- */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px 48px; align-items: end; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact h2 { font-family: var(--f-display); font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.02; letter-spacing: -0.03em; margin-top: 12px; }
+.contact p { color: var(--muted); max-width: 52ch; margin: 16px 0 0; }
+.mailbox { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.email { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--window); border-radius: 8px; padding: 10px 12px; font-family: var(--f-mono); font-size: 0.9rem; min-width: 0; }
+.email span { user-select: all; overflow-wrap: anywhere; }
+.copy { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 4px; padding: 3px 8px; cursor: pointer; }
+.socials { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
+.socials a { font-family: var(--f-mono); font-size: 0.82rem; text-decoration: none; }
+.socials a:hover { color: var(--accent); }
+
+/* ---------- Footer ---------- */
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 18px; color: var(--muted); }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <nav class="navbar" aria-label="Primary">
-    <div class="nav-links nav-links--left">
-      <a href="#about">ABOUT</a>
-      <a href="#portfolio">PORTFOLIO</a>
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    <a class="logo" href="#home">CHRISTEEN<b>.</b>OS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home" class="active">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="status">
+      <!-- ✏️ Change this to whatever you're open to -->
+      <span class="pill">Open to internships</span>
+      <span class="clock" id="clock">LAGUNA, PH --:--</span>
     </div>
-    <a href="index.html" class="brand" aria-label="Christeen Solis — Home">
-      <div class="brand-logo-crop">
-        <img src="images/logo.png" alt="Christeen Solis">
-      </div>
-    </a>
-    <div class="nav-links nav-links--right">
-      <a href="#contact">CONTACT</a>
-      <a href="#" class="disabled" title="Coming soon">BLOG</a>
-    </div>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  </div>
 </header>
 
 <main>
-
-  <section class="hero">
-    <div class="hero-title-crop">
-      <img src="images/hero-swirl.png" alt="Portfolio" class="hero-title-img">
-    </div>
-    <h1 class="hero-subtitle">DESIGN &amp; DEVELOP</h1>
-    <a href="#portfolio" class="btn btn--primary">
-      VIEW MY WORKS
-      <svg class="icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </section>
-
-  <section id="about" class="about">
-    <div class="about-grid">
-      <div class="about-text">
-        <h2 class="section-heading">ABOUT ME</h2>
-        <p class="about-copy">
-          Hi, I'm <span class="accent-script">Christeen Ann Solis</span>, an IT student specializing in Cybersecurity with a passion for creativity and digital design. I enjoy turning ideas into meaningful and visually engaging experiences while continuously learning and exploring new possibilities.
-        </p>
-      </div>
-      <div class="about-photo-crop">
-        <img src="images/about-photo.png" alt="Christeen Ann Solis" class="about-photo-img">
-      </div>
-    </div>
-
-    <div class="education">
-      <h2 class="section-heading section-heading--center">EDUCATION</h2>
-      <div class="education-copy">
-        <p class="education-school">Mapúa Malayan Colleges Laguna (MMCL) (2023 - on going)</p>
-        <p>4th -year Student</p>
-        <p>BS Information Technology</p>
-      </div>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skills-col">
-        <h3 class="skills-heading">SOFTWARE</h3>
-        <div class="skills-icons">
-          <div class="icon-crop icon-crop--sw1"><img src="images/software-icon-1.png" alt="Adobe Photoshop"></div>
-          <div class="icon-crop icon-crop--sw2"><img src="images/software-icon-2.png" alt="Figma"></div>
-          <div class="icon-crop icon-crop--sw3"><img src="images/software-icon-3.png" alt="Canva"></div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="tag">● Portfolio · Selected works 2023–2026</span>
+        <h1>Creative Designer <span class="serif-i">&amp; Aspiring</span> Front-End Developer</h1>
+        <!-- ✏️ Your one-paragraph intro -->
+        <p class="hero-lede">Blending creativity and technology to build meaningful digital experiences. I'm <strong>Christeen Solis</strong>, a 4th-year BS IT student majoring in <strong>Cybersecurity</strong> at Mapúa Malayan Colleges Laguna.</p>
+        <div class="ctas">
+          <a class="btn" href="#portfolio">View my works ↓</a>
+          <a class="btn ghost" href="#contact">Contact me</a>
         </div>
       </div>
-      <div class="skills-col">
-        <h3 class="skills-heading">TECH STACK</h3>
-        <div class="skills-icons skills-icons--tech">
-          <img src="images/tech-icon-1.png" alt="Python">
-          <img src="images/tech-icon-2.png" alt="HTML5">
-          <img src="images/tech-icon-3.png" alt="CSS3">
-          <img src="images/tech-icon-4.png" alt="JavaScript">
-          <img src="images/tech-icon-5.png" alt="C">
+
+      <!-- Quick-look window: filled in by the script from the FOLDERS list -->
+      <div class="window" aria-live="polite">
+        <div class="win-bar">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="crumbs">Desktop › Folders › <b id="ql-crumb">ITSOC_Pubmats</b></div>
+        </div>
+        <div class="win-body">
+          <div class="preview" id="ql-preview"></div>
+          <div class="props">
+            <span class="mono" style="color:var(--accent);font-weight:600">Properties</span>
+            <dl>
+              <div><dt>Type</dt><dd id="ql-type"></dd></div>
+              <div><dt>Tools</dt><dd id="ql-tools"></dd></div>
+              <div><dt>Contents</dt><dd id="ql-count"></dd></div>
+            </dl>
+            <button class="btn accent" type="button" id="ql-open" aria-expanded="false" aria-controls="ql-posts">Open folder →</button>
+          </div>
+        </div>
+        <p class="win-desc" id="ql-desc"></p>
+        <div class="posts" id="ql-posts" hidden>
+          <span class="mono" style="color:var(--muted)" id="ql-posts-label">Posts on Facebook</span>
+          <div class="posts-list" id="ql-posts-list"></div>
+        </div>
+        <div class="win-tabs" id="ql-tabs" role="group" aria-label="Choose a folder"></div>
+      </div>
+    </div>
+
+    <div class="folders" id="folders" role="group" aria-label="Work folders"></div>
+    <div class="hint mono">
+      <span>● Click a folder to preview it</span>
+      <span>Design · Development · Security</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="section band" id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Table view // All works</p>
+        <h2>Selected Works &amp; Projects</h2>
+      </div>
+      <p>Design work for organizations and clients, and development projects with their code on GitHub.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter works">
+      <button type="button" data-filter="All" aria-pressed="true">All</button>
+      <button type="button" data-filter="Design" aria-pressed="false">Design</button>
+      <button type="button" data-filter="Development" aria-pressed="false">Development</button>
+    </div>
+    <table class="table">
+      <thead><tr><th>No.</th><th>Project</th><th>Client / Type</th><th>Tools</th><th>Year</th><th></th></tr></thead>
+      <tbody id="works"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ ABOUT + SKILLS ============ -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <figure class="photo-win">
+        <div class="win-bar"><div class="dots" aria-hidden="true"><span></span><span></span><span></span></div><span class="crumbs"><b>christeen.jpg</b></span></div>
+        <img src="images/christeen.jpg" alt="Portrait of Christeen Solis" width="640" height="800">
+      </figure>
+      <p class="eyebrow">About me</p>
+      <h2 class="big">Design is how it looks. <span class="serif-i">Security</span> is how it holds.</h2>
+      <!-- ✏️ Rewrite these two paragraphs in your own voice -->
+      <p>I'm a fourth-year <strong>Bachelor of Science in Information Technology student majoring in Cybersecurity</strong> at Mapúa Malayan Colleges Laguna, with a passion for <strong>UI/UX design, graphic design, and front-end development</strong>.</p>
+      <p>I enjoy transforming creative ideas into functional, visually appealing, and user-friendly digital experiences. My experience includes designing interfaces, developing web-based systems, and collaborating on technical projects. I also enjoy taking leadership roles, combining creativity, problem-solving, and teamwork to bring ideas to life.</p>
+    </div>
+    <div>
+      <div class="stack-head"><span class="mono">My skills</span><span class="mono" style="color:var(--muted)">5 areas</span></div>
+      <!-- ✏️ Edit the tools in each card so they match what you really use -->
+      <div class="skills">
+        <div class="skill sec wide">
+          <p class="eyebrow">Specialization</p>
+          <h3>Cybersecurity</h3>
+          <ul><li>AES-256 &amp; encryption</li><li>RBAC · authentication &amp; authorization</li><li>Security testing</li><li>Vulnerability management</li></ul>
+        </div>
+        <div class="skill">
+          <p class="eyebrow">Design &amp; Creative</p>
+          <h3>Design</h3>
+          <ul><li>UI/UX Design</li><li>Graphic Design</li><li>Web Design</li><li>Visual Design</li></ul>
+        </div>
+        <div class="skill">
+          <p class="eyebrow">Development</p>
+          <h3>Languages</h3>
+          <ul><li>HTML · CSS · JavaScript</li><li>PHP · Python</li><li>C# · C++</li><li>SQL</li></ul>
+        </div>
+        <div class="skill">
+          <p class="eyebrow">Tools &amp; Technologies</p>
+          <h3>Tools</h3>
+          <ul><li>Git &amp; GitHub</li><li>VS Code · Visual Studio</li><li>PostgreSQL</li><li>Render</li></ul>
+        </div>
+        <div class="skill">
+          <p class="eyebrow">Soft Skills</p>
+          <h3>How I Work</h3>
+          <ul><li>Leadership</li><li>Team Collaboration</li><li>Problem-Solving</li><li>Creativity</li><li>Communication</li></ul>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="portfolio">
-    <h2 class="section-heading section-heading--center">DESIGNS &amp; PROJECTS</h2>
-
-    <div class="filter-bar" role="tablist" aria-label="Filter projects">
-      <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-      <span aria-hidden="true">/</span>
-      <button class="filter-btn" data-filter="design" role="tab" aria-selected="false">DESIGN</button>
-      <span aria-hidden="true">/</span>
-      <button class="filter-btn" data-filter="development" role="tab" aria-selected="false">DEVELOPMENT</button>
-    </div>
-
-    <div class="project-grid">
-      <a class="project-card" href="designs-logo.html" data-category="design">
-        <span class="project-eyebrow">LOGO</span>
-        <img src="images/thumb-logo.jpg" alt="INFOTECH Society logo design" class="project-thumb">
-        <p class="project-desc">Custom logo concepts created to establish strong brand identities through thoughtful typography, color, and symbolism.</p>
-      </a>
-
-      <a class="project-card" href="designs-social-media.html" data-category="design">
-        <span class="project-eyebrow">SOCIAL MEDIA POST</span>
-        <img src="images/thumb-social-media.jpg" alt="Social media post designs" class="project-thumb">
-        <p class="project-desc">A collection of promotional materials designed for organizations and events, focusing on clear communication, visual consistency, and audience engagement.</p>
-      </a>
-
-      <a class="project-card" href="designs-development.html" data-category="development">
-        <span class="project-eyebrow">PROJECTS</span>
-        <img src="images/thumb-personal-projects.jpg" alt="Personal development projects" class="project-thumb project-thumb--wide">
-        <p class="project-desc">PERSONAL PROJECTS</p>
-      </a>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2 class="section-heading section-heading--center">LET'S CONNECT</h2>
-    <form class="contact-form" id="contact-form" method="POST" action="https://api.web3forms.com/submit">
-      <h3>Send me a Message</h3>
-
-      <input type="hidden" name="access_key" value="1987e600-910d-436a-a470-4ddef07cf872">
-      <input type="hidden" name="subject" value="New message from your portfolio site">
-      <input type="hidden" name="from_name" value="Portfolio Contact Form">
-
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone">
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-
-      <div class="hp-field" aria-hidden="true">
-        <label for="botcheck">Leave this field empty</label>
-        <input type="text" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+      <div class="facts">
+        <div class="fact"><b>Dean's Lister</b><span>Six terms · 2023–2026</span></div>
+        <div class="fact"><b>Creatives Director</b><span>Infotech Society · 2025–26</span></div>
+        <div class="fact"><b>BSIT · Cybersecurity</b><span>Mapúa MCL · Class of 2027</span></div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <button type="submit" class="btn btn--primary btn--send">SEND</button>
-      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-    </form>
-  </section>
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="section band" id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Credentials</p>
+        <h2>Certifications</h2>
+      </div>
+      <p>Networking, cloud, security and development courses I've completed.</p>
+    </div>
+    <!-- Cards come from the CERTS list in the script below -->
+    <div class="certs" id="certs"></div>
+    </div>
+</section>
 
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Let's make something <span class="serif-i">beautiful</span> and secure.</h2>
+        <p>I'm open to design commissions, internships and collaborations. Send me an email and I'll get back to you.</p>
+      </div>
+      <div class="mailbox">
+        <div class="email"><span id="email">tynsolis2209@gmail.com</span><button class="copy" type="button" id="copy">Copy</button></div>
+        <a class="btn" href="mailto:tynsolis2209@gmail.com">Send email ↗</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/tynsoo" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/christeen-solis" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <!-- ✏️ To add your résumé: put the PDF in this folder and uncomment the next line -->
+      <!-- <a href="SOLIS-Christeen-RESUME.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a> -->
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="site-footer">
-  <p class="footer-copyright">© 2026 Designed by Christeen Ann Solis</p>
-  <a class="footer-email" href="mailto:tynsolis2209@gmail.com">tynsolis2209@gmail.com</a>
-  <div class="footer-social">
-    <a href="https://github.com/tynsoo" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="images/social-icon-1.png" alt=""></a>
-    <a href="https://www.linkedin.com/in/christeen-solis?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="images/social-icon-2.png" alt=""></a>
-    <a href="https://www.instagram.com/tyn.soo?igsh=MTdlZGpkN283NTlxcA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="images/social-icon-3.png" alt=""></a>
-    <a href="https://m.me/tyn.solis22/" target="_blank" rel="noopener noreferrer" aria-label="Messenger"><img src="images/social-icon-facebook.svg" alt=""></a>
+<footer>
+  <div class="wrap mono">
+    <span>© 2026 Christeen Ann L. Solis · Santa Rosa, Laguna</span>
+    <span>Designed in Figma · Built with HTML, CSS &amp; JS</span>
   </div>
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+/* =========================================================
+   ✏️ EDIT YOUR CONTENT HERE
+   FOLDERS = the folder icons + quick-look window at the top.
+   WORKS   = the rows in the "Selected Works" table.
+   - image: put a file in the images/ folder, e.g. "images/itsoc.jpg"
+            (leave it "" to show the text placeholder)
+   - example: true shows an "Example" tag. Set it to false (or delete it)
+              once the row has your real info.
+   ========================================================= */
+const FOLDERS = [
+  { id: "itsoc",  name: "Infotech Society", file: "ITSOC_Pubmats", category: "Design",
+    meta: "Pubmats · Creatives Director", tools: "Canva", count: "18 posts · 2025 – 2026",
+    image: "images/itsoc-logo.jpg", logo: true,
+    posts: [
+      "https://www.facebook.com/share/p/1F5DgqjA7r/",
+      "https://www.facebook.com/share/p/1FB4JWA8ZY/",
+      "https://www.facebook.com/share/p/19ftjBYzj1/",
+      "https://www.facebook.com/share/p/1Gx6KgW9XG/",
+      "https://www.facebook.com/share/p/1DzJzBLoD3/",
+      "https://www.facebook.com/share/p/1KAFzKBW3q/",
+      "https://www.facebook.com/share/p/19fFLgFdre/",
+      "https://www.facebook.com/share/p/18pe59bbZG/",
+      "https://www.facebook.com/share/p/1VboPG7hdL/",
+      "https://www.facebook.com/share/p/1A7gmEYNhR/",
+      "https://www.facebook.com/share/p/1A74yKHQt1/",
+      "https://www.facebook.com/share/p/1GxWCaECto/",
+      "https://www.facebook.com/share/p/1CFLY2bai6/",
+      "https://www.facebook.com/share/p/1FLZsnoKNb/",
+      "https://www.facebook.com/share/p/1A2LwNzrC2/",
+      "https://www.facebook.com/share/p/1CRmJMbkQM/",
+      "https://www.facebook.com/share/p/1DviZCdUgX/",
+      "https://www.facebook.com/share/p/1Gqd98oE8j/",
+    ],
+    desc: "Event pubmats, social media materials, presentations and merchandise I lead and design as Creatives Director of the Infotech Society, Mapúa MCL." },
+  { id: "ccis",   name: "CCIS Student Council", file: "CCIS_Council", category: "Design",
+    meta: "Pubmats · Creatives Committee", tools: "Canva", count: "4 posts · 2023 – 2025",
+    image: "",
+    posts: [
+      "https://www.facebook.com/share/p/1DYZPX1dZN/",
+      { url: "https://www.facebook.com/share/p/1HQHi6hNHY/", label: "Ticket design" },
+      "https://www.facebook.com/share/p/1MQJHdUp9E/",
+      "https://www.facebook.com/share/p/1Fc1L57xcv/",
+    ], desc: "Promotional materials and event designs for college department activities." },
+  { id: "uiux",   name: "UI / UX", file: "UI_UX", category: "Design",
+    meta: "Interfaces · Prototypes", tools: "Figma", count: "2 projects",
+    image: "images/shop-app.jpg",
+    desc: "A clickable shopping app prototype (home, product listing, cart and checkout) and the student and admin interfaces of ProfilePath.",
+    posts: [
+      { url: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", label: "Shopping app · Figma prototype" },
+      { url: "https://profilepath-careerprofilingsystem.onrender.com/student-login", label: "ProfilePath · live site" },
+    ] },
+  { id: "illus",  name: "Illustration", file: "Illustration", category: "Design",
+    meta: "Digital art", tools: "Procreate", count: "Artworks",
+    image: "", desc: "Digital illustrations drawn in Procreate." },
+  { id: "dev",    name: "Dev Projects", file: "Dev_Projects", category: "Development",
+    meta: "Full-stack · Security", tools: "Python, FastAPI, PostgreSQL, Docker", count: "3 projects",
+    image: "", desc: "ProfilePath (capstone), MediTrace and the Multi-Pass Braided Cipher, with live demos and code where available." },
+  { id: "certs",  name: "Certificates", file: "Certificates", category: "Security",
+    meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "6 credentials",
+    image: "", desc: "Cisco CCNA courses, Amazon Full-Stack Web Development, Google Cloud and Project Management badges, and more.", link: "#certifications" },
+];
+
+const WORKS = [
+  { title: "ProfilePath", sub: "Career profiling system for SHS students",
+    client: "Capstone project · Full-stack dev & UI/UX", category: "Development",
+    tools: "Python, PostgreSQL, JavaScript, HTML/CSS, Docker, Render", year: "Present",
+    link: "https://profilepath-careerprofilingsystem.onrender.com/student-login", linkLabel: "Live demo" },
+  { title: "MediTrace", sub: "Distributed tracing & observability for a 7-service healthcare system",
+    client: "Final project · System Architecture & Design", category: "Development",
+    tools: "Python, FastAPI, PostgreSQL, RabbitMQ, Docker, OpenTelemetry, Jaeger, Prometheus", year: "2025–26", link: "https://github.com/tynsoo/meditrace", linkLabel: "GitHub" },
+  { title: "Multi-Pass Braided Cipher", sub: "Custom encryption algorithm benchmarked against AES-256",
+    client: "Final project · Cryptography", category: "Development",
+    tools: "Python", year: "2025–26", link: "", linkLabel: "" },
+  { title: "Infotech Society Pubmats", sub: "Event pubmats, social media, presentations & merch",
+    client: "Infotech Society · Creatives Director", category: "Design",
+    tools: "Canva", year: "2025–26", link: "#home", linkLabel: "18 posts", folder: "itsoc" },
+  { title: "CCIS Student Council", sub: "Promotional materials and event designs",
+    client: "CCIS Student Council · Creatives Committee", category: "Design",
+    tools: "Canva", year: "2023–25", link: "#home", linkLabel: "4 posts", folder: "ccis" },
+  { title: "Fashion · Lifestyle · Home Products", sub: "Mobile shopping app: home, product listing, cart and checkout",
+    client: "UI/UX · Mobile app prototype", category: "Design",
+    tools: "Figma", year: "2025", link: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", linkLabel: "Prototype" },
+];
+
+// ✏️ Add a "link" to any certificate to show a "View credential" link
+const CERTS = [
+  { name: "CCNA: Introduction to Networks", issuer: "Cisco", seal: "NET" },
+  { name: "CCNA: Switching, Routing & Wireless Essentials", issuer: "Cisco", seal: "NET" },
+  { name: "Full-Stack Web Development", issuer: "Amazon", seal: "DEV" },
+  { name: "Cloud Computing Foundations · Cloud Security", issuer: "Google Skills badges", seal: "SEC" },
+  { name: "Project Management Foundations · Agile", issuer: "Google Skills badges", seal: "PM" },
+  { name: "AI: Ethics & Societal Challenges", issuer: "Lund University", seal: "AI" },
+];
+
+/* ============ You don't need to edit below this line ============ */
+const folderIcon = '<svg viewBox="0 0 30 26" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5a2 2 0 0 1 2-2h7l3 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><path d="M2 10h26"/></svg>';
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function showFolder(id) {
+  const f = FOLDERS.find(x => x.id === id) || FOLDERS[0];
+  $("ql-crumb").textContent = f.file;
+  $("ql-type").textContent = f.category + " · " + f.meta;
+  $("ql-tools").textContent = f.tools;
+  $("ql-count").textContent = f.count;
+  $("ql-desc").textContent = f.desc;
+  $("ql-preview").classList.toggle("logo", !!f.logo);
+  $("ql-preview").innerHTML = f.image
+    ? `<img src="${esc(f.image)}" alt="${esc(f.name)} preview">`
+    : `<div class="ph-title">${esc(f.name)}</div><span class="ph-note">Add a cover image · images/</span>`;
+  // What's inside the folder, shown when "Open folder" is clicked
+  let items = (f.posts || []).map((p, i) => typeof p === "string"
+    ? { url: p, label: String(i + 1).padStart(2, "0") }
+    : { url: p.url, label: (f.posts.length > 1 ? String(i + 1).padStart(2, "0") + " · " : "") + p.label });
+  let label = `Pubmats on Facebook (${items.length})`;
+  if (f.id === "uiux") label = `Projects (${items.length})`;
+  if (f.id === "dev") { items = WORKS.filter(w => w.category === "Development").map(w => ({ url: w.link, label: w.title + (w.link ? "" : " · not public") })); label = `Projects (${items.length})`; }
+  if (f.id === "certs") { items = CERTS.map(c => ({ url: c.link || "", label: c.issuer + " · " + c.name })); label = `Credentials (${items.length})`; }
+  if (!items.length) label = "Contents";
+  $("ql-posts-label").textContent = label;
+  $("ql-posts-list").innerHTML = items.length
+    ? items.map(it => it.url
+        ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.label)} ↗</a>`
+        : `<span>${esc(it.label)}</span>`).join("")
+    : `<p class="empty">Nothing here yet. Illustrations are coming soon.</p>`;
+  setOpen(false);
+  document.querySelectorAll("[data-folder]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.folder === f.id)));
+}
+
+$("folders").innerHTML = FOLDERS.map((f, i) => `
+  <button class="folder" type="button" data-folder="${f.id}" aria-pressed="false">
+    <span class="f-top"><img class="f-icon" src="images/folder.png" alt="" width="54" height="45"><span class="f-count">${String(i + 1).padStart(2, "0")}</span></span>
+    <span class="f-name">${esc(f.name)}</span>
+    <span class="f-meta">${esc(f.meta)}</span>
+  </button>`).join("");
+$("ql-tabs").innerHTML = FOLDERS.map((f, i) =>
+  `<button type="button" data-folder="${f.id}" aria-pressed="false">${String(i + 1).padStart(2, "0")}. ${esc(f.name)}</button>`).join("");
+document.querySelectorAll("[data-folder]").forEach(b => b.addEventListener("click", () => showFolder(b.dataset.folder)));
+showFolder(FOLDERS[0].id);
+
+function renderWorks(filter) {
+  const rows = WORKS.filter(w => filter === "All" || w.category === filter);
+  $("works").innerHTML = rows.map((w, i) => `
+    <tr>
+      <td class="idx">${String(i + 1).padStart(2, "0")}</td>
+      <td><div class="w-title">${esc(w.title)}${w.example ? '<span class="example">Example</span>' : ""}</div><div class="w-sub">${esc(w.sub)}</div></td>
+      <td>${esc(w.client)}</td>
+      <td class="w-stack">${esc(w.tools)}</td>
+      <td class="w-year">${esc(w.year || "—")}</td>
+      <td class="w-act">${w.link ? `<a class="w-link" href="${esc(w.link)}" ${w.folder ? `data-open-folder="${w.folder}"` : ""} ${w.link.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${esc(w.linkLabel)} ↗</a>` : ""}</td>
+    </tr>`).join("");
+  document.querySelectorAll("#filters button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.filter === filter)));
+}
+document.querySelectorAll("#filters button").forEach(b => b.addEventListener("click", () => renderWorks(b.dataset.filter)));
+renderWorks("All");
+// Design rows jump back up to their folder in the preview window
+$("works").addEventListener("click", (e) => { const a = e.target.closest("[data-open-folder]"); if (a) showFolder(a.dataset.openFolder); });
+
+$("certs").innerHTML = CERTS.map(c => `
+  <article class="cert">
+    <div class="seal">${esc(c.seal)}</div>
+    <h3>${esc(c.name)}</h3>
+    <span class="issuer">${esc(c.issuer)}</span>
+    ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">View credential ↗</a>` : ""}
+  </article>`).join("");
+
+// "Open folder" opens and closes the folder's contents inside the window
+function setOpen(isOpen) {
+  $("ql-posts").hidden = !isOpen;
+  $("ql-open").setAttribute("aria-expanded", String(isOpen));
+  $("ql-open").textContent = isOpen ? "Close folder ×" : "Open folder →";
+}
+$("ql-open").addEventListener("click", () => setOpen($("ql-posts").hidden));
+
+// Copy email button
+$("copy").addEventListener("click", async () => {
+  const text = $("email").textContent;
+  try { await navigator.clipboard.writeText(text); $("copy").textContent = "Copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents($("email")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copy").textContent = "Selected"; }
+  setTimeout(() => { $("copy").textContent = "Copy"; }, 1800);
+});
+
+// Live clock in the top bar
+function tick() {
+  let t; try { t = new Date().toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Manila" }); } catch { t = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); }
+  $("clock").textContent = "LAGUNA, PH · " + t;
+}
+tick(); setInterval(tick, 30000);
+
+// Highlight the nav link for the section on screen
+const links = [...document.querySelectorAll(".nav a")];
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id)); });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
+</script>
 </body>
 </html>
