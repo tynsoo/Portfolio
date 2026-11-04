@@ -223,6 +223,10 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .skill.sec { background: var(--sec-bg); color: var(--sec-fg); border-color: var(--sec-bg); }
 .skill.sec .eyebrow { color: var(--accent-on-ink); }
 .skill.sec li::before { color: var(--accent-on-ink); }
+.skill.ai { background: var(--fill); border-color: var(--fill-strong); }
+.skill.ai, .skill.ai .eyebrow, .skill.ai li::before { color: var(--on-fill); }
+.skill.ai ul { grid-template-columns: repeat(3, max-content); column-gap: 28px; }
+@media (max-width: 560px) { .skill.ai ul { grid-template-columns: 1fr; } }
 
 /* ---------- Certifications ---------- */
 .certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -380,7 +384,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <p>I enjoy transforming creative ideas into functional, visually appealing, and user-friendly digital experiences. My experience includes designing interfaces, developing web-based systems, and collaborating on technical projects. I also enjoy taking leadership roles, combining creativity, problem-solving, and teamwork to bring ideas to life.</p>
     </div>
     <div>
-      <div class="stack-head"><span class="mono">My skills</span><span class="mono" style="color:var(--muted)">5 areas</span></div>
+      <div class="stack-head"><span class="mono">My skills</span><span class="mono" style="color:var(--muted)">6 areas</span></div>
       <!-- ✏️ Edit the tools in each card so they match what you really use -->
       <div class="skills">
         <div class="skill sec wide">
@@ -407,6 +411,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <p class="eyebrow">Soft Skills</p>
           <h3>How I Work</h3>
           <ul><li>Leadership</li><li>Team Collaboration</li><li>Problem-Solving</li><li>Creativity</li><li>Communication</li></ul>
+        </div>
+        <div class="skill wide ai">
+          <p class="eyebrow">AI Tools</p>
+          <h3>AI I Work With</h3>
+          <ul><li>Claude Code</li><li>Claude</li><li>ChatGPT</li></ul>
         </div>
       </div>
       <div class="facts">
