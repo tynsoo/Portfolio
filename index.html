@@ -128,7 +128,7 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 @media (max-width: 560px) { .win-body { grid-template-columns: 1fr; } }
 .preview { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 8px; overflow: hidden; position: relative; background: var(--ink); color: var(--bg); display: grid; place-items: center; text-align: center; padding: 16px; }
 .preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.preview.logo img { position: static; width: auto; height: 78%; object-fit: contain; border-radius: 6px; }
+.preview.logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; padding: 5%; }
 .preview.logo { background: #070648; }
 .preview .ph-title { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; }
 .preview .ph-note { position: absolute; left: 10px; bottom: 8px; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; opacity: 0.75; text-transform: uppercase; }
