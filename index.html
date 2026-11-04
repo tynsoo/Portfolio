@@ -264,6 +264,10 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 #sparkles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 15; }
 footer { border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 18px; color: var(--muted); }
+.visits { display: inline-flex; align-items: center; gap: 8px; }
+.visits[hidden] { display: none; }
+.visits .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--fill-strong); box-shadow: 0 0 0 1px var(--line); }
+.visits b { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -480,6 +484,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <footer>
   <div class="wrap mono">
     <span>© 2026 Christeen Ann L. Solis · Santa Rosa, Laguna</span>
+    <span class="visits" id="visits" hidden><span class="dot" aria-hidden="true"></span><span><b id="visit-count">0</b> visitors so far</span></span>
     <span>Designed in Figma · Built with HTML, CSS &amp; JS</span>
   </div>
 </footer>
@@ -764,6 +769,27 @@ document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
     if (parts.length > 140) parts.splice(0, parts.length - 140);
     if (!running) { running = true; requestAnimationFrame(frame); }
   }, { passive: true });
+})();
+
+/* ---------- Visit counter ----------
+   Counts each browser once (not every refresh), using the free
+   Abacus counter service. If the service is down, the counter
+   just stays hidden. */
+(function () {
+  var BASE = 'https://abacus.jasoncameron.dev';
+  var KEY = 'tynsoo-portfolio/visits';
+  var FLAG = 'portfolio-visited';
+  var seen = false;
+  try { seen = localStorage.getItem(FLAG) === '1'; } catch (e) {}
+  var url = BASE + (seen ? '/get/' : '/hit/') + KEY;
+  fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (d) {
+      if (typeof d.value !== 'number') return;
+      if (!seen) { try { localStorage.setItem(FLAG, '1'); } catch (e) {} }
+      document.getElementById('visit-count').textContent = d.value.toLocaleString();
+      document.getElementById('visits').hidden = false;
+    })
+    .catch(function () {});
 })();
 </script>
 </body>
