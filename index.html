@@ -234,11 +234,25 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .cert a { margin-top: auto; font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
 
 /* ---------- Contact ---------- */
-.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px 48px; align-items: end; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; align-items: start; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact h2 { font-family: var(--f-display); font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.02; letter-spacing: -0.03em; margin-top: 12px; }
 .contact p { color: var(--muted); max-width: 52ch; margin: 16px 0 0; }
-.mailbox { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.mailbox { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 28px; }
+.msg-body { padding: 18px; display: grid; gap: 6px; }
+.msg-body label { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.msg-body input, .msg-body textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; width: 100%; }
+.msg-body textarea { resize: vertical; min-height: 110px; }
+.msg-body input:focus-visible, .msg-body textarea:focus-visible { outline: 2px solid var(--fill-strong); outline-offset: 1px; border-color: var(--accent); }
+.msg-body input:disabled, .msg-body textarea:disabled { opacity: 0.6; }
+.msg-body .btn { margin-top: 12px; justify-content: center; }
+.msg-body .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin: 4px 0 0; font-size: 0.92rem; min-height: 1.4em; color: var(--muted); }
+.form-status.ok { color: var(--ink); font-weight: 600; }
+.form-status.err { color: #b3261e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .form-status.err { color: #ffb4a9; } }
+:root[data-theme="dark"] .form-status.err { color: #ffb4a9; }
 .email { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--window); border-radius: 8px; padding: 10px 12px; font-family: var(--f-mono); font-size: 0.9rem; min-width: 0; }
 .email span { user-select: all; overflow-wrap: anywhere; }
 .copy { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 4px; padding: 3px 8px; cursor: pointer; }
@@ -422,12 +436,34 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div>
         <p class="eyebrow">Get in touch</p>
         <h2>Let's make something <span class="serif-i">beautiful</span> and secure.</h2>
-        <p>I'm open to design commissions, internships and collaborations. Send me an email and I'll get back to you.</p>
+        <p>I'm open to design commissions, internships and collaborations. Send me a message and I'll get back to you.</p>
+        <div class="mailbox">
+          <span class="mono" style="color:var(--muted)">Or email me directly</span>
+          <div class="email"><span id="email">tynsolis2209@gmail.com</span><button class="copy" type="button" id="copy">Copy</button></div>
+        </div>
       </div>
-      <div class="mailbox">
-        <div class="email"><span id="email">tynsolis2209@gmail.com</span><button class="copy" type="button" id="copy">Copy</button></div>
-        <a class="btn" href="mailto:tynsolis2209@gmail.com">Send email ↗</a>
-      </div>
+
+      <!-- Contact form: sends to your inbox through Web3Forms (no server needed) -->
+      <form class="msg-form window" id="contact-form" novalidate>
+        <div class="win-bar"><div class="dots" aria-hidden="true"><span></span><span></span><span></span></div><span class="crumbs"><b>new_message.txt</b></span></div>
+        <div class="msg-body">
+          <input type="hidden" name="access_key" value="1987e600-910d-436a-a470-4ddef07cf872">
+          <input type="hidden" name="subject" value="New message from your portfolio site">
+          <input type="hidden" name="from_name" value="Portfolio Contact Form">
+          <div class="hp-field" aria-hidden="true">
+            <label for="botcheck">Leave this field empty</label>
+            <input type="text" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="80">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="120">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required maxlength="2000"></textarea>
+          <button type="submit" class="btn accent" id="cf-send">Send message →</button>
+          <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
     <div class="socials">
       <a href="https://github.com/tynsoo" target="_blank" rel="noopener">GitHub ↗</a>
@@ -622,6 +658,40 @@ function setOpen(isOpen) {
   $("ql-open").textContent = isOpen ? "Close folder ×" : "Open folder →";
 }
 $("ql-open").addEventListener("click", () => setOpen($("ql-posts").hidden));
+
+// ✉️ Contact form: one message per visitor and per email address
+(function () {
+  const form = $("contact-form"); if (!form) return;
+  const KEY = "portfolio-message-sent";
+  const status = $("cf-status"), send = $("cf-send");
+  const say = (msg, kind) => { status.textContent = msg; status.className = "form-status" + (kind ? " " + kind : ""); };
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch { return null; } };
+  const save = (email) => { try { const d = read() || { emails: [] }; d.emails.push(email); d.at = Date.now(); localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+  const lock = (msg) => { form.querySelectorAll("input, textarea, button").forEach(el => el.disabled = true); say(msg, "ok"); };
+  let sending = false;
+
+  if (read()) lock("You've already sent me a message. Thank you! I'll reply to you by email soon.");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (sending) return;
+    const email = form.email.value.trim().toLowerCase();
+    if (!form.checkValidity()) { say("Please fill in your name, a valid email and a message.", "err"); form.reportValidity(); return; }
+    if (form.botcheck.value) return; // a bot filled the hidden field
+    const prev = read();
+    if (prev) { lock("You've already sent me a message. Thank you! I'll reply to you by email soon."); return; }
+    sending = true; send.disabled = true; say("Sending…");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+      const data = await res.json();
+      if (data.success) { save(email); form.reset(); lock("Thanks! Your message was sent. I'll reply to you by email soon."); }
+      else { say(data.message || "Your message couldn't be sent. Please try again in a moment.", "err"); send.disabled = false; }
+    } catch {
+      say("Couldn't reach the mail service. Check your connection, or email me directly using the address on the left.", "err");
+      send.disabled = false;
+    } finally { sending = false; }
+  });
+})();
 
 // Copy email button
 $("copy").addEventListener("click", async () => {
