@@ -233,6 +233,8 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 900px) { .certs { grid-template-columns: 1fr; } }
 .cert { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.cert .cert-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cert .via { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--on-fill); background: var(--fill); border: 1px solid var(--fill-strong); border-radius: 999px; padding: 4px 10px; text-align: right; }
 .cert .seal { width: 44px; height: 44px; border-radius: 50%; border: 1.5px dashed var(--accent); display: grid; place-items: center; font-family: var(--f-mono); font-size: 0.7rem; color: var(--accent); font-weight: 600; }
 .cert h3 { font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; line-height: 1.25; }
 .cert .issuer { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
@@ -436,7 +438,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <p class="eyebrow">Credentials</p>
         <h2>Certifications</h2>
       </div>
-      <p>Networking, cloud, security and development courses I've completed.</p>
+      <p>Networking, cloud, security and development certificates I earned through the courses and subjects in my BS IT program.</p>
     </div>
     <!-- Cards come from the CERTS list in the script below -->
     <div class="certs" id="certs"></div>
@@ -594,7 +596,8 @@ const WORKS = [
     tools: "HTML, CSS, JavaScript", year: "2026", link: "https://github.com/tynsoo/Cookie-Timer", linkLabel: "GitHub" },
 ];
 
-// ✏️ Add a "link" to any certificate to show a "View credential" link
+// ✏️ Add a "link" to any certificate to show a "View credential" link.
+//    Add a "course" (e.g. course: "IT Elective 3") to name the subject it came from.
 const CERTS = [
   { name: "CCNA: Introduction to Networks", issuer: "Cisco", seal: "NET" },
   { name: "CCNA: Switching, Routing & Wireless Essentials", issuer: "Cisco", seal: "NET" },
@@ -670,7 +673,7 @@ $("works").addEventListener("click", (e) => { const a = e.target.closest("[data-
 
 $("certs").innerHTML = CERTS.map(c => `
   <article class="cert">
-    <div class="seal">${esc(c.seal)}</div>
+    <div class="cert-top"><div class="seal">${esc(c.seal)}</div><span class="via">${c.course ? "Via " + esc(c.course) : "Earned through coursework"}</span></div>
     <h3>${esc(c.name)}</h3>
     <span class="issuer">${esc(c.issuer)}</span>
     ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">View credential ↗</a>` : ""}
