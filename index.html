@@ -151,9 +151,10 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .win-tabs button[aria-pressed="true"] { background: var(--fill-strong); color: var(--on-fill); }
 
 /* Folders */
-.folders { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
-@media (max-width: 1000px) { .folders { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.folders { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+.folders > :last-child:nth-child(4n+3) { grid-column: span 2; }
+@media (max-width: 1000px) { .folders { grid-template-columns: repeat(3, minmax(0, 1fr)); } .folders > :last-child:nth-child(4n+3) { grid-column: auto; } .folders > :last-child:nth-child(3n+1) { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); } .folders > :last-child:nth-child(3n+1) { grid-column: auto; } .folders > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .folder { text-align: left; cursor: pointer; font: inherit; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .15s ease, border-color .15s ease; }
 .folder:hover { transform: translateY(-3px); border-color: var(--accent); }
 .folder[aria-pressed="true"] { background: var(--fill-strong); color: var(--on-fill); border-color: color-mix(in srgb, var(--fill-strong) 75%, var(--on-fill)); box-shadow: 0 10px 24px -14px color-mix(in srgb, #6b5815 60%, transparent); }
@@ -556,6 +557,13 @@ const FOLDERS = [
   { id: "dev",    name: "Dev Projects", file: "Dev_Projects", category: "Development",
     meta: "Full-stack · Security", tools: "Python, FastAPI, PostgreSQL, Docker", count: "3 projects",
     image: "", desc: "ProfilePath (capstone), MediTrace and the Multi-Pass Braided Cipher, with live demos and code where available." },
+  { id: "personal", name: "Personal Projects", file: "Personal_Projects", category: "Development",
+    meta: "Web app · Pixel art", tools: "HTML, CSS, JavaScript", count: "1 project",
+    image: "images/cookie-timer.jpg",
+    desc: "Cookie Timer, a pixel-art cookie baking countdown timer. I drew all the art and buttons myself and built it with HTML, CSS and JavaScript.",
+    posts: [
+      { url: "https://github.com/tynsoo/Cookie-Timer", label: "Cookie Timer · GitHub" },
+    ] },
   { id: "certs",  name: "Certificates", file: "Certificates", category: "Security",
     meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "6 credentials",
     image: "", desc: "Cisco CCNA courses, Amazon Full-Stack Web Development, Google Cloud and Project Management badges, and more.", link: "#certifications" },
@@ -581,6 +589,9 @@ const WORKS = [
   { title: "Fashion · Lifestyle · Home Products", sub: "Mobile shopping app: home, product listing, cart and checkout",
     client: "UI/UX · Mobile app prototype", category: "Design",
     tools: "Figma", year: "2025", link: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", linkLabel: "Prototype" },
+  { title: "Cookie Timer", sub: "Pixel-art cookie baking countdown timer, with art and buttons I drew myself",
+    client: "Personal project · Front-end & pixel art", category: "Development",
+    tools: "HTML, CSS, JavaScript", year: "2026", link: "https://github.com/tynsoo/Cookie-Timer", linkLabel: "GitHub" },
 ];
 
 // ✏️ Add a "link" to any certificate to show a "View credential" link
