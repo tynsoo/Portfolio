@@ -271,7 +271,10 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 /* ---------- Day grid ---------- */
 .days { margin-top: 56px; }
 .day-grid { display: grid; grid-template-columns: repeat(31, minmax(0, 1fr)); gap: clamp(3px, 0.6vw, 8px); }
-.day-grid span { aspect-ratio: 1; border-radius: clamp(2px, 0.5vw, 7px); background: var(--heat0); transition: transform .2s ease; }
+.day-grid span { aspect-ratio: 1; border-radius: clamp(2px, 0.5vw, 7px); background: var(--heat0); opacity: 0; transform: scale(.35); transition: opacity .45s ease, transform .45s cubic-bezier(.3,1.5,.5,1), background-color .9s ease; transition-delay: var(--d, 0s); }
+.day-grid.in span { opacity: 1; transform: none; }
+.day-grid.done span { transition-delay: 0s; }
+.day-grid span.pop { transform: scale(1.18); }
 .day-grid .l1 { background: var(--heat1); }
 .day-grid .l2 { background: var(--heat2); }
 .day-grid .l3 { background: var(--heat3); }
@@ -858,10 +861,50 @@ document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
       var mark = row && col >= 0 && col < row.length && row[col] === "#";
       var x = rand(), lvl = x < 0.45 ? "" : x < 0.72 ? "l1" : x < 0.9 ? "l2" : "l3";
       if (row && col >= -1 && col <= row.length) lvl = x < 0.7 ? "" : "l1"; // keep it quiet around the letters
-      html += '<span class="' + (mark ? "mark" : lvl) + '"></span>';
+      // squares ripple in column by column; letters light up after the wave
+      html += '<span class="' + lvl + '"' + (mark ? ' data-mark' : (row && col >= -1 && col <= row.length ? ' data-quiet' : '')) +
+        ' style="--d:' + (c * 0.035 + r * 0.02).toFixed(3) + 's"></span>';
     }
   }
-  document.getElementById("day-grid").innerHTML = html;
+  var grid = document.getElementById("day-grid");
+  grid.innerHTML = html;
+
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var marks = grid.querySelectorAll("[data-mark]");
+  var LEVELS = ["", "l1", "l2", "l3"];
+
+  function lightLetters() {
+    grid.classList.add("done");
+    marks.forEach(function (sq, i) {
+      setTimeout(function () {
+        sq.className = "mark pop";
+        setTimeout(function () { sq.classList.remove("pop"); }, 260);
+      }, still ? 0 : i * 45);
+    });
+    if (!still) setTimeout(twinkle, marks.length * 45 + 600);
+  }
+
+  // After the intro, a few squares quietly change shade, like new days of work
+  function twinkle() {
+    var free = grid.querySelectorAll("span:not([data-mark]):not([data-quiet])");
+    setInterval(function () {
+      if (document.hidden) return;
+      for (var k = 0; k < 3; k++) {
+        var sq = free[Math.floor(Math.random() * free.length)];
+        sq.className = LEVELS[Math.floor(Math.random() * LEVELS.length)];
+      }
+    }, 900);
+  }
+
+  function start() {
+    grid.classList.add("in");
+    setTimeout(lightLetters, still ? 0 : 1300);
+  }
+  if (still || !("IntersectionObserver" in window)) { start(); return; }
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { io.disconnect(); start(); }
+  }, { threshold: 0.3 });
+  io.observe(grid);
 })();
 </script>
 </body>
