@@ -739,8 +739,7 @@ const FOLDERS = [
     image: "images/shop-app.jpg",
     desc: "10th Ave. Studio, a dance studio app (customer and admin views) I led as Project Leader, UI/UX and Documentation Lead on a team of five. Also a clickable shopping app prototype and the student and admin interfaces of ProfilePath.",
     posts: [
-      { url: "https://www.figma.com/design/QTKXo3vjTsgcDYmmu9VuWP/Untitled?node-id=0-1", label: "10th Ave. Studio · Customer view" },
-      { url: "https://www.figma.com/design/QTKXo3vjTsgcDYmmu9VuWP/Untitled?node-id=1-3", label: "10th Ave. Studio · Admin view" },
+      { url: "images/tenth-ave-studio.jpg", label: "10th Ave. Studio · Preview" },
       { url: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", label: "Shopping app · Figma prototype" },
       { url: "https://profilepath-careerprofilingsystem.onrender.com/student-login", label: "ProfilePath · live site" },
     ] },
@@ -782,7 +781,7 @@ const WORKS = [
     tools: "Canva", year: "2023–25", link: "#home", linkLabel: "4 posts", folder: "ccis" },
   { title: "10th Ave. Studio", sub: "Dance studio app: class booking, studio rentals, promo cards and QR attendance, with a customer view and an admin view",
     client: "Team project (5 members) · Project Leader, UI/UX & Documentation Lead", category: "Design",
-    tools: "Figma", year: "2025–26", link: "#home", linkLabel: "UI/UX folder", folder: "uiux" },
+    tools: "Figma", year: "2025–26", link: "images/tenth-ave-studio.jpg", linkLabel: "Preview" },
   { title: "Fashion · Lifestyle · Home Products", sub: "Mobile shopping app: home, product listing, cart and checkout",
     client: "UI/UX · Mobile app prototype", category: "Design",
     tools: "Figma", year: "2025", link: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", linkLabel: "Prototype" },
@@ -823,7 +822,7 @@ function showFolder(id) {
     ? { url: p, label: String(i + 1).padStart(2, "0") }
     : { url: p.url, label: (f.posts.length > 1 ? String(i + 1).padStart(2, "0") + " · " : "") + p.label });
   let label = `Pubmats on Facebook (${items.length})`;
-  if (f.id === "uiux" || f.id === "personal") label = `Links (${items.length})`;
+  if (f.id === "uiux" || f.id === "personal") label = `Projects (${items.length})`;
   if (f.id === "dev") { items = WORKS.filter(w => w.category === "Development" && !w.personal).map(w => ({ url: w.link, label: w.title + (w.link ? "" : " · not public") })); label = `Projects (${items.length})`; }
   if (f.id === "certs") { items = CERTS.map(c => ({ url: c.link || "", label: c.issuer + " · " + c.name })); label = `Credentials (${items.length})`; }
   if (!items.length) label = "Contents";
@@ -857,7 +856,7 @@ function renderWorks(filter) {
       <td>${esc(w.client)}</td>
       <td class="w-stack">${esc(w.tools)}</td>
       <td class="w-year">${esc(w.year || "—")}</td>
-      <td class="w-act">${w.link ? `<a class="w-link" href="${esc(w.link)}" ${w.folder ? `data-open-folder="${w.folder}"` : ""} ${w.link.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${esc(w.linkLabel)} ↗</a>` : ""}</td>
+      <td class="w-act">${w.link ? `<a class="w-link" href="${esc(w.link)}" ${w.folder ? `data-open-folder="${w.folder}"` : ""} ${!w.link.startsWith("#") ? 'target="_blank" rel="noopener"' : ""}>${esc(w.linkLabel)} ↗</a>` : ""}</td>
     </tr>`).join("");
   document.querySelectorAll("#filters button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.filter === filter)));
 }
