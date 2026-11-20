@@ -29,6 +29,7 @@
   --sec-bg: #23262f; --sec-fg: #fffcf2; /* Cybersecurity highlight card */
   --dot1: #e8957d; --dot2: #f2cf5b; --dot3: #8fb58f;
   --sparkle: #e9bd3f, #f5d66b, #c99a2e; /* cursor sparkle colors */
+  --heat0: #f3e8c0; --heat1: #f8e3a0; --heat2: #f1d27a; --heat3: #e2b84a; --heat-mark: #23262f; /* day grid */
 
   --f-display: "Syne", "Arial Black", system-ui, sans-serif;
   --f-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
@@ -40,11 +41,11 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; --sparkle: #fff0b8, #ffe27a, #fffaf0; color-scheme: dark;
+    --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; --sparkle: #fff0b8, #ffe27a, #fffaf0; --heat0: #2f2e26; --heat1: #4a4633; --heat2: #776d45; --heat3: #b5a262; --heat-mark: #fff0b8; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; --sparkle: #fff0b8, #ffe27a, #fffaf0; color-scheme: dark;
+  --bg: #1c1b17; --panel: #25241e; --window: #2c2b24; --ink: #f6f0dc; --muted: #bdb59b; --line: #3d3b30; --accent: #fff0b8; --fill: #fff0b8; --fill-strong: #f4e29a; --on-fill: #1c1b17; --accent-on-ink: #6b5815; --accent-ink: #1c1b17; --sec-bg: #fff0b8; --sec-fg: #1c1b17; --sparkle: #fff0b8, #ffe27a, #fffaf0; --heat0: #2f2e26; --heat1: #4a4633; --heat2: #776d45; --heat3: #b5a262; --heat-mark: #fff0b8; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -267,6 +268,20 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .socials a { font-family: var(--f-mono); font-size: 0.82rem; text-decoration: none; }
 .socials a:hover { color: var(--accent); }
 
+/* ---------- Day grid ---------- */
+.days { margin-top: 56px; }
+.day-grid { display: grid; grid-template-columns: repeat(31, minmax(0, 1fr)); gap: clamp(3px, 0.6vw, 8px); }
+.day-grid span { aspect-ratio: 1; border-radius: clamp(2px, 0.5vw, 7px); background: var(--heat0); transition: transform .2s ease; }
+.day-grid .l1 { background: var(--heat1); }
+.day-grid .l2 { background: var(--heat2); }
+.day-grid .l3 { background: var(--heat3); }
+.day-grid .mark { background: var(--heat-mark); }
+@media (hover: hover) { .day-grid span:hover { transform: scale(1.18); } }
+.days-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; margin-top: 18px; color: var(--muted); }
+.days-key { display: inline-flex; align-items: center; gap: 5px; font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.days-key i { width: 12px; height: 12px; border-radius: 3px; background: var(--heat0); }
+.days-key i:nth-of-type(2) { background: var(--heat1); } .days-key i:nth-of-type(3) { background: var(--heat2); } .days-key i:nth-of-type(4) { background: var(--heat3); }
+
 /* ---------- Footer ---------- */
 #sparkles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 15; }
 footer { border-top: 1px solid var(--line); }
@@ -369,6 +384,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <thead><tr><th>No.</th><th>Project</th><th>Client / Type</th><th>Tools</th><th>Year</th><th></th></tr></thead>
       <tbody id="works"></tbody>
     </table>
+
+    <div class="days">
+      <div class="day-grid" id="day-grid" role="img" aria-label="A grid of squares, one for each day of building, with TYN spelled out in highlighted squares"></div>
+      <div class="days-foot">
+        <p>Every square is a day of building.</p>
+        <span class="days-key" aria-hidden="true">Less <i></i><i></i><i></i><i></i> More</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -814,6 +837,31 @@ document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
       document.getElementById('visits').hidden = false;
     })
     .catch(function () {});
+})();
+
+/* ---------- Day grid: 31 x 7 squares, "TYN" spelled in the dark squares ---------- */
+(function () {
+  var COLS = 31, ROWS = 7, START = 7; // letters start at column 7
+  var WORD = [
+    "#####.#...#.#...#",
+    "..#....#.#..##..#",
+    "..#.....#...#.#.#",
+    "..#.....#...#..##",
+    "..#.....#...#...#",
+  ];
+  var seed = 7; // fixed seed, so the pattern is the same on every visit
+  function rand() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var html = "";
+  for (var r = 0; r < ROWS; r++) {
+    for (var c = 0; c < COLS; c++) {
+      var row = WORD[r - 1], col = c - START;
+      var mark = row && col >= 0 && col < row.length && row[col] === "#";
+      var x = rand(), lvl = x < 0.45 ? "" : x < 0.72 ? "l1" : x < 0.9 ? "l2" : "l3";
+      if (row && col >= -1 && col <= row.length) lvl = x < 0.7 ? "" : "l1"; // keep it quiet around the letters
+      html += '<span class="' + (mark ? "mark" : lvl) + '"></span>';
+    }
+  }
+  document.getElementById("day-grid").innerHTML = html;
 })();
 </script>
 </body>
