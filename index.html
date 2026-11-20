@@ -325,7 +325,12 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .cert .seal { width: 46px; height: 46px; border-radius: 50%; background: var(--fill); border: 2px dashed var(--pink); display: grid; place-items: center; font-family: var(--f-pixel); font-size: 0.8rem; color: var(--on-fill); font-weight: 600; }
 .cert h3 { font-family: var(--f-title); font-weight: 500; font-size: 1.15rem; line-height: 1.25; }
 .cert .issuer { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.cert a { margin-top: auto; font-family: var(--f-label); font-weight: 600; letter-spacing: 0.08em; font-size: 0.66rem; text-transform: uppercase; color: var(--accent); }
+.cert .badges { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 6px; }
+.cert .badges li { position: relative; padding-left: 16px; font-size: 0.86rem; line-height: 1.35; }
+.cert .badges li::before { content: "♡"; position: absolute; left: 0; color: var(--accent); font-size: 0.8em; top: 0.15em; }
+.cert .badges a { font-family: var(--f-body); color: var(--ink); text-decoration: none; border-bottom: 1.5px dashed color-mix(in srgb, var(--pink) 60%, transparent); }
+.cert .badges a:hover { color: var(--accent); border-bottom-style: solid; }
+.cert > a { margin-top: auto; font-family: var(--f-label); font-weight: 600; letter-spacing: 0.08em; font-size: 0.66rem; text-transform: uppercase; color: var(--accent); }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; align-items: start; }
@@ -760,7 +765,7 @@ const FOLDERS = [
       { url: "https://github.com/tynsoo/Cookie-Timer", label: "Cookie Timer · GitHub" },
     ] },
   { id: "certs",  name: "Certificates", file: "Certificates", category: "Security",
-    meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "8 credentials",
+    meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "9 credentials · 13 badges",
     image: "", desc: "Cisco CCNA courses, Amazon Full-Stack Web Development, Google Cloud badges, the Google Project Management Professional Certificate, and more.", link: "#certifications" },
 ];
 
@@ -794,18 +799,38 @@ const WORKS = [
 
 // ✏️ Add a "link" to any certificate to show a "View credential" link.
 //    Add a "course" (e.g. course: "IT Elective 3") to name the subject it came from.
+const BADGE_URL = "https://www.skills.google/public_profiles/6bc777dc-d518-4336-87bb-d4527210ecec/badges/";
 const CERTS = [
   { name: "CCNA: Introduction to Networks", issuer: "Cisco", seal: "NET" },
   { name: "CCNA: Switching, Routing & Wireless Essentials", issuer: "Cisco", seal: "NET" },
   { name: "Full-Stack Web Development", issuer: "Amazon · Coursera · Mar 2026", seal: "DEV",
     link: "https://www.coursera.org/account/accomplishments/verify/X7C93FS84EGD" },
-  { name: "Cloud Computing Foundations · Cloud Security", issuer: "Google Skills badges", seal: "SEC" },
+  { name: "Google Cloud Computing Foundations", issuer: "Google Skills · 4 badges · Feb–Mar 2026", seal: "GCP",
+    items: [
+      { name: "Cloud Computing Fundamentals", id: "22290830" },
+      { name: "Infrastructure in Google Cloud", id: "22620273" },
+      { name: "Networking & Security in Google Cloud", id: "22822198" },
+      { name: "Data, ML, and AI in Google Cloud", id: "22907409" },
+    ] },
+  { name: "Google Cloud Security", issuer: "Google Skills · 5 badges · Feb–Mar 2026", seal: "SEC",
+    items: [
+      { name: "Introduction to Security Principles in Cloud Computing", id: "22290981" },
+      { name: "Strategies for Cloud Security Risk Management", id: "22416553" },
+      { name: "Cloud Security Risks: Identify and Protect Against Threats", id: "22618619" },
+      { name: "Detect, Respond, and Recover from Cloud Cybersecurity Attacks", id: "22865775" },
+      { name: "Put It All Together: Prepare for a Cloud Security Analyst Job", id: "22931014" },
+    ] },
+  { name: "Google Cloud Hands-on Skill Badges", issuer: "Google Skills · 4 lab badges · Mar 2026", seal: "LAB",
+    items: [
+      { name: "Set Up an App Dev Environment on Google Cloud", id: "22875115" },
+      { name: "Implementing Cloud Load Balancing for Compute Engine", id: "22822990" },
+      { name: "Build a Secure Google Cloud Network", id: "22905639" },
+      { name: "Prepare Data for ML APIs on Google Cloud", id: "22906880" },
+    ] },
   { name: "Google Project Management Professional Certificate", issuer: "Google · Coursera · 6 courses incl. Agile · Mar 2026", seal: "PM",
     link: "https://www.coursera.org/account/accomplishments/specialization/2OJZ1FJUJXVF" },
   { name: "AI: Ethics & Societal Challenges", issuer: "Lund University · Coursera · Oct 2025", seal: "AI",
     link: "https://www.coursera.org/account/accomplishments/verify/TOJIRZYP2JUI" },
-  { name: "Set Up an App Dev Environment on Google Cloud", issuer: "Google · Mar 2026", seal: "DEV", note: "Google Skills badge",
-    link: "https://www.skills.google/public_profiles/6bc777dc-d518-4336-87bb-d4527210ecec/badges/22875115" },
   { name: "Accelerate Your Job Search with AI", issuer: "Google · Coursera · Mar 2026", seal: "AI", note: "Coursera",
     link: "https://www.coursera.org/account/accomplishments/verify/D1RME4UN8X3Z" },
 ];
@@ -879,6 +904,7 @@ $("certs").innerHTML = CERTS.map(c => `
     <div class="cert-top"><div class="seal">${esc(c.seal)}</div><span class="via">${c.note ? esc(c.note) : c.course ? "Via " + esc(c.course) : "Earned through coursework"}</span></div>
     <h3>${esc(c.name)}</h3>
     <span class="issuer">${esc(c.issuer)}</span>
+    ${c.items ? `<ul class="badges">${c.items.map(b => `<li><a href="${BADGE_URL}${esc(b.id)}" target="_blank" rel="noopener">${esc(b.name)}</a></li>`).join("")}</ul>` : ""}
     ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">View credential ↗</a>` : ""}
   </article>`).join("");
 
