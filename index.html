@@ -594,7 +594,7 @@ const WORKS = [
     tools: "Figma", year: "2025", link: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", linkLabel: "Prototype" },
   { title: "Cookie Timer", sub: "Pixel-art cookie baking countdown timer, with art and buttons I drew myself",
     client: "Personal project · Front-end & pixel art", category: "Development",
-    tools: "HTML, CSS, JavaScript", year: "2026", link: "https://tynsoo.github.io/Cookie-Timer/", linkLabel: "Live demo" },
+    tools: "HTML, CSS, JavaScript", year: "2026", link: "https://tynsoo.github.io/Cookie-Timer/", linkLabel: "Live demo", personal: true },
 ];
 
 // ✏️ Add a "link" to any certificate to show a "View credential" link.
@@ -630,7 +630,7 @@ function showFolder(id) {
     : { url: p.url, label: (f.posts.length > 1 ? String(i + 1).padStart(2, "0") + " · " : "") + p.label });
   let label = `Pubmats on Facebook (${items.length})`;
   if (f.id === "uiux") label = `Projects (${items.length})`;
-  if (f.id === "dev") { items = WORKS.filter(w => w.category === "Development").map(w => ({ url: w.link, label: w.title + (w.link ? "" : " · not public") })); label = `Projects (${items.length})`; }
+  if (f.id === "dev") { items = WORKS.filter(w => w.category === "Development" && !w.personal).map(w => ({ url: w.link, label: w.title + (w.link ? "" : " · not public") })); label = `Projects (${items.length})`; }
   if (f.id === "certs") { items = CERTS.map(c => ({ url: c.link || "", label: c.issuer + " · " + c.name })); label = `Credentials (${items.length})`; }
   if (!items.length) label = "Contents";
   $("ql-posts-label").textContent = label;
