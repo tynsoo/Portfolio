@@ -627,7 +627,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <p class="eyebrow">Credentials</p>
         <h2>Certifications</h2>
       </div>
-      <p>Networking, cloud, security and development certificates I earned through the courses and subjects in my BS IT program.</p>
+      <p>Networking, cloud, security and development certificates, most of them earned through the courses and subjects in my BS IT program.</p>
     </div>
     <!-- Cards come from the CERTS list in the script below -->
     <div class="certs" id="certs"></div>
@@ -758,7 +758,7 @@ const FOLDERS = [
       { url: "https://github.com/tynsoo/Cookie-Timer", label: "Cookie Timer · GitHub" },
     ] },
   { id: "certs",  name: "Certificates", file: "Certificates", category: "Security",
-    meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "6 credentials",
+    meta: "Cisco · Amazon · Google", tools: "Networking, cloud, security", count: "8 credentials",
     image: "", desc: "Cisco CCNA courses, Amazon Full-Stack Web Development, Google Cloud and Project Management badges, and more.", link: "#certifications" },
 ];
 
@@ -799,6 +799,10 @@ const CERTS = [
   { name: "Cloud Computing Foundations · Cloud Security", issuer: "Google Skills badges", seal: "SEC" },
   { name: "Project Management Foundations · Agile", issuer: "Google Skills badges", seal: "PM" },
   { name: "AI: Ethics & Societal Challenges", issuer: "Lund University", seal: "AI" },
+  { name: "Set Up an App Dev Environment on Google Cloud", issuer: "Google · Mar 2026", seal: "DEV", note: "Google Skills badge",
+    link: "https://www.skills.google/public_profiles/6bc777dc-d518-4336-87bb-d4527210ecec/badges/22875115" },
+  { name: "Accelerate Your Job Search with AI", issuer: "Google · Coursera · Mar 2026", seal: "AI", note: "Coursera",
+    link: "https://www.coursera.org/account/accomplishments/verify/D1RME4UN8X3Z" },
 ];
 
 /* ============ You don't need to edit below this line ============ */
@@ -867,7 +871,7 @@ $("works").addEventListener("click", (e) => { const a = e.target.closest("[data-
 
 $("certs").innerHTML = CERTS.map(c => `
   <article class="cert">
-    <div class="cert-top"><div class="seal">${esc(c.seal)}</div><span class="via">${c.course ? "Via " + esc(c.course) : "Earned through coursework"}</span></div>
+    <div class="cert-top"><div class="seal">${esc(c.seal)}</div><span class="via">${c.note ? esc(c.note) : c.course ? "Via " + esc(c.course) : "Earned through coursework"}</span></div>
     <h3>${esc(c.name)}</h3>
     <span class="issuer">${esc(c.issuer)}</span>
     ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">View credential ↗</a>` : ""}
