@@ -11,32 +11,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen&family=DotGothic16&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 /* TYN.OS ✿ girly tech edition
-   A pastel desktop: butter-yellow paper, bubblegum pink, periwinkle-to-lavender
-   window bars, pixel type and scrapbook stickers. Dark mode is a midnight desk
-   with a soft pink glow.
+   A pastel desktop in butter yellow, white and bubblegum pink: yellow window bars,
+   pixel type and scrapbook stickers. Dark mode is a cocoa-night desk with a soft
+   yellow-and-pink glow.
    ✏️ To change colors, edit the tokens below. */
 :root {
-  --bg: #fffaf0;          /* page paper */
-  --grid: rgba(255, 126, 182, 0.07); /* faint pixel grid on the page */
-  --panel: #fff3cf;       /* butter bands and cards */
-  --window: #fffef9;      /* window insides */
-  --ink: #3b2547;         /* main text: soft plum */
-  --muted: #6e5a73;       /* secondary text */
-  --line: #efd9a8;        /* borders */
-  --frame: #7f86d9;       /* window outlines (periwinkle) */
-  --accent: #b8286f;      /* pink TEXT on light backgrounds */
-  --pink: #ff7eb6;        /* bubblegum pink fill */
-  --pink-soft: #ffd6e8;
-  --fill: #fff0b8;        /* butter yellow, same as the folder icon */
-  --fill-strong: #fde38f;
-  --on-fill: #3b2547;
-  --peri: #93a5ff; --lav: #d2a8ff; /* sticky-note title bar gradient */
-  --bar-ink: #ffffff;
-  --accent-on-ink: #ffd6e8;
-  --sec-bg: #3b2547; --sec-fg: #fffaf0; /* Cybersecurity highlight card */
+  --bg: #fffdf5;          /* page: warm white */
+  --grid: rgba(240, 200, 80, 0.13); /* faint pixel grid on the page */
+  --panel: #fff6cf;       /* pastel yellow bands */
+  --window: #ffffff;      /* window insides */
+  --ink: #3a2a20;         /* main text: warm cocoa */
+  --muted: #74604e;       /* secondary text */
+  --line: #f4df98;        /* borders and dashes */
+  --frame: #e8c24f;       /* window outlines (golden butter) */
+  --accent: #c0306e;      /* pink TEXT on light backgrounds */
+  --pink: #ff8dbf;        /* bubblegum pink fill */
+  --pink-soft: #ffe3ee;
+  --fill: #fff0b0;        /* pastel yellow, same as the folder icon */
+  --fill-strong: #fde48a;
+  --on-fill: #3a2a20;
+  --bar: #fde48a; --bar-2: #fff3c2; /* window title bar */
+  --bar-ink: #3a2a20;
+  --accent-on-ink: #fff0b0;
+  --sec-bg: #3a2a20; --sec-fg: #fffdf5; /* Cybersecurity highlight card */
+  --tint-yellow: #fff8dc;  /* soft yellow cards */
   --glow: 0 0 0 transparent;
-  --sticker-shadow: drop-shadow(0 6px 10px rgba(91, 46, 92, 0.18));
-  --sparkle: #ff7eb6, #fde38f, #d2a8ff; /* cursor sparkle colors */
+  --sticker-shadow: drop-shadow(0 6px 10px rgba(120, 85, 20, 0.18));
+  --sparkle: #ff8dbf, #fde48a, #ffffff; /* cursor sparkle colors */
 
   --f-pixel: "Pixelify Sans", "Silkscreen", ui-monospace, monospace;
   --f-title: "DotGothic16", "Pixelify Sans", system-ui, sans-serif; /* small pixel titles, easy to read */
@@ -50,11 +51,11 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #14111f; --grid: rgba(255, 138, 196, 0.06); --panel: #1c1830; --window: #221d3a; --ink: #fbf1ff; --muted: #bdb2d3; --line: #3a3159; --frame: #8d93f0; --accent: #ff9ccf; --pink: #ff8ac4; --pink-soft: #4a2440; --fill: #fff0b8; --fill-strong: #f8dc85; --on-fill: #1c1830; --peri: #6f7ff0; --lav: #b98cf5; --accent-on-ink: #b8286f; --sec-bg: #ff8ac4; --sec-fg: #1c1830; --glow: 0 0 28px rgba(255, 138, 196, 0.35); --sticker-shadow: drop-shadow(0 0 14px rgba(255, 138, 196, 0.35)); --sparkle: #ff8ac4, #fff0b8, #c9a6ff; color-scheme: dark;
+    --bg: #19150f; --grid: rgba(253, 228, 138, 0.05); --panel: #221c14; --window: #2a2219; --ink: #fff8e6; --muted: #d2c3a3; --line: #4a3c26; --frame: #e8c24f; --accent: #ff9fcb; --pink: #ff8dbf; --pink-soft: #46242f; --fill: #fff0b0; --fill-strong: #fde48a; --on-fill: #2a2016; --bar: #fde48a; --bar-2: #fff3c2; --bar-ink: #2a2016; --accent-on-ink: #c0306e; --sec-bg: #fde48a; --sec-fg: #2a2016; --tint-yellow: #3a2f1a; --glow: 0 0 26px rgba(253, 228, 138, 0.22); --sticker-shadow: drop-shadow(0 0 14px rgba(255, 141, 191, 0.3)); --sparkle: #fde48a, #ff8dbf, #fffaf0; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #14111f; --grid: rgba(255, 138, 196, 0.06); --panel: #1c1830; --window: #221d3a; --ink: #fbf1ff; --muted: #bdb2d3; --line: #3a3159; --frame: #8d93f0; --accent: #ff9ccf; --pink: #ff8ac4; --pink-soft: #4a2440; --fill: #fff0b8; --fill-strong: #f8dc85; --on-fill: #1c1830; --peri: #6f7ff0; --lav: #b98cf5; --accent-on-ink: #b8286f; --sec-bg: #ff8ac4; --sec-fg: #1c1830; --glow: 0 0 28px rgba(255, 138, 196, 0.35); --sticker-shadow: drop-shadow(0 0 14px rgba(255, 138, 196, 0.35)); --sparkle: #ff8ac4, #fff0b8, #c9a6ff; color-scheme: dark;
+  --bg: #19150f; --grid: rgba(253, 228, 138, 0.05); --panel: #221c14; --window: #2a2219; --ink: #fff8e6; --muted: #d2c3a3; --line: #4a3c26; --frame: #e8c24f; --accent: #ff9fcb; --pink: #ff8dbf; --pink-soft: #46242f; --fill: #fff0b0; --fill-strong: #fde48a; --on-fill: #2a2016; --bar: #fde48a; --bar-2: #fff3c2; --bar-ink: #2a2016; --accent-on-ink: #c0306e; --sec-bg: #fde48a; --sec-fg: #2a2016; --tint-yellow: #3a2f1a; --glow: 0 0 26px rgba(253, 228, 138, 0.22); --sticker-shadow: drop-shadow(0 0 14px rgba(255, 141, 191, 0.3)); --sparkle: #fde48a, #ff8dbf, #fffaf0; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -105,15 +106,15 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 /* ---------- Window chrome (from the sticky note window) ---------- */
 .win-bar {
   display: flex; align-items: center; gap: 12px; padding: 9px 12px 9px 14px;
-  background: linear-gradient(90deg, var(--peri), var(--lav));
+  background: linear-gradient(90deg, var(--bar), var(--bar-2));
   border-bottom: 2px solid var(--frame); color: var(--bar-ink);
 }
 .win-bar::after {
   content: ""; margin-left: auto; flex: 0 0 auto; width: 70px; height: 20px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 20'%3E%3Cg stroke='%23ffffff' stroke-width='1.6'%3E%3Crect x='1' y='1' width='20' height='18' rx='4' fill='%23aebcff'/%3E%3Crect x='25' y='1' width='20' height='18' rx='4' fill='%23d7b3ff'/%3E%3Crect x='49' y='1' width='20' height='18' rx='4' fill='%23ff9ccb'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-width='2' stroke-linecap='round' fill='none'%3E%3Cpath d='M7 13h8'/%3E%3Crect x='31' y='6' width='8' height='8' rx='1'/%3E%3Cpath d='M55.5 6.5l7 7M62.5 6.5l-7 7'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 20'%3E%3Cg stroke='%23c99a2e' stroke-width='1.6'%3E%3Crect x='1' y='1' width='20' height='18' rx='4' fill='%23ffffff'/%3E%3Crect x='25' y='1' width='20' height='18' rx='4' fill='%23fff8dc'/%3E%3Crect x='49' y='1' width='20' height='18' rx='4' fill='%23ff9ccb'/%3E%3C/g%3E%3Cg stroke='%233a2a20' stroke-width='2' stroke-linecap='round' fill='none'%3E%3Cpath d='M7 13h8'/%3E%3Crect x='31' y='6' width='8' height='8' rx='1'/%3E%3Cpath d='M55.5 6.5l7 7M62.5 6.5l-7 7'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
 }
 .dots { display: none; }
-.crumbs { font-family: var(--f-pixel); font-size: 0.92rem; letter-spacing: 0.02em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; text-shadow: 0 1px 0 rgba(60, 50, 140, 0.35); }
+.crumbs { font-family: var(--f-pixel); font-size: 0.92rem; letter-spacing: 0.02em; color: var(--bar-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .crumbs b { font-weight: 600; }
 .crumbs::before { content: ""; display: inline-block; vertical-align: -3px; width: 18px; height: 16px; margin-right: 8px; background: url("images/folder.png") no-repeat center / contain; }
 .window { background: var(--window); border: 2px solid var(--frame); border-radius: 12px; box-shadow: 6px 6px 0 color-mix(in srgb, var(--frame) 28%, transparent), var(--glow); overflow: hidden; min-width: 0; }
@@ -198,19 +199,17 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .win-tabs button[aria-pressed="true"] { background: var(--pink); color: #fff; }
 
 /* Folders: layered colored tabs, like a stack of file folders */
-.folders { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 14px; margin-top: 64px; }
+.folders { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
 .folders > :last-child:nth-child(4n+3) { grid-column: span 2; }
 @media (max-width: 1000px) { .folders { grid-template-columns: repeat(3, minmax(0, 1fr)); } .folders > :last-child:nth-child(4n+3) { grid-column: auto; } .folders > :last-child:nth-child(3n+1) { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); } .folders > :last-child:nth-child(3n+1) { grid-column: auto; } .folders > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
-.folder { --tab: var(--fill); position: relative; text-align: left; cursor: pointer; font: inherit; color: var(--on-fill); background: var(--tab); border: 2px solid color-mix(in srgb, var(--tab) 55%, var(--on-fill)); border-radius: 0 14px 14px 14px; padding: 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .15s ease, box-shadow .15s ease; }
-.folder::before { content: ""; position: absolute; left: -2px; top: -16px; width: 46%; height: 18px; background: inherit; border: inherit; border-bottom: 0; border-radius: 10px 14px 0 0; }
-.folders .folder:nth-child(4n+2) { --tab: #ffd3e6; }
-.folders .folder:nth-child(4n+3) { --tab: #d5dcff; }
-.folders .folder:nth-child(4n+4) { --tab: #ead6ff; }
-.folder:hover { transform: translateY(-4px) rotate(-0.6deg); box-shadow: 4px 6px 0 color-mix(in srgb, var(--frame) 30%, transparent); }
-.folder[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--pink), 4px 8px 0 color-mix(in srgb, var(--pink) 45%, transparent); }
-.folder[aria-pressed="true"]::after { content: "♡ open"; position: absolute; right: 10px; bottom: 10px; font-family: var(--f-label); font-size: 0.6rem; text-transform: uppercase; color: #b8286f; }
-.folder .f-icon { width: 50px; height: auto; filter: drop-shadow(0 3px 3px rgba(60, 37, 71, 0.18)); transition: transform .15s ease; }
+.folder { --tab: var(--fill); position: relative; text-align: left; cursor: pointer; font: inherit; color: var(--on-fill); background: var(--tab); border: 2px solid var(--frame); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .15s ease, box-shadow .15s ease; box-shadow: 3px 3px 0 color-mix(in srgb, var(--frame) 35%, transparent); }
+.folders .folder:nth-child(3n+2) { --tab: #ffe3ee; border-color: #f5a8c9; }
+.folders .folder:nth-child(3n+3) { --tab: #ffffff; }
+.folder:hover { transform: translateY(-4px); box-shadow: 4px 7px 0 color-mix(in srgb, var(--frame) 45%, transparent); }
+.folder[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--pink), 4px 7px 0 color-mix(in srgb, var(--pink) 45%, transparent); }
+.folder[aria-pressed="true"]::after { content: "♡ open"; position: absolute; right: 10px; bottom: 10px; font-family: var(--f-label); font-size: 0.6rem; text-transform: uppercase; color: #c0306e; }
+.folder .f-icon { width: 60px; height: auto; padding: 7px 8px; background: #fffdf5; border: 1.5px solid color-mix(in srgb, var(--frame) 70%, transparent); border-radius: 12px; filter: drop-shadow(0 2px 2px rgba(120, 85, 20, 0.12)); transition: transform .15s ease; }
 .folder:hover .f-icon { transform: rotate(-6deg) scale(1.08); }
 .f-top { display: flex; justify-content: space-between; align-items: start; }
 .f-count { font-family: var(--f-pixel); font-size: 0.85rem; color: color-mix(in srgb, var(--on-fill) 65%, transparent); }
@@ -221,9 +220,9 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 /* ---------- Works table ---------- */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .filters button { font-family: var(--f-label); font-size: 0.7rem; text-transform: uppercase; border: 2px solid var(--frame); background: var(--window); color: var(--ink); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
-.filters button[aria-pressed="true"] { background: linear-gradient(90deg, var(--peri), var(--lav)); color: #fff; }
+.filters button[aria-pressed="true"] { background: var(--pink); border-color: var(--pink); color: #fff; }
 .table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--window); border: 2px solid var(--frame); border-radius: 14px; overflow: hidden; box-shadow: 6px 6px 0 color-mix(in srgb, var(--frame) 22%, transparent); }
-.table th { text-align: left; font-family: var(--f-label); font-size: 0.62rem; text-transform: uppercase; color: #fff; font-weight: 400; padding: 12px; background: linear-gradient(90deg, var(--peri), var(--lav)); }
+.table th { text-align: left; font-family: var(--f-label); font-size: 0.62rem; text-transform: uppercase; color: var(--bar-ink); font-weight: 400; padding: 12px; background: linear-gradient(90deg, var(--bar), var(--bar-2)); }
 .table td { padding: 18px 12px; border-top: 1.5px dashed var(--line); vertical-align: top; }
 .table tbody tr:first-child td { border-top: 0; }
 .table tbody tr:hover td { background: color-mix(in srgb, var(--pink-soft) 45%, transparent); }
@@ -247,10 +246,11 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 }
 
 /* ---------- About ---------- */
-.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.about-photo { display: flex; justify-content: center; padding-top: 30px; }
 @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
 /* Her photo inside the polka-dot camera, on a starry paper scrap, held with kaomoji tape */
-.snapshot { position: relative; margin: 10px 0 40px; width: min(420px, 100%); aspect-ratio: 589 / 389; }
+.snapshot { position: relative; margin: 10px 0 20px; width: min(460px, 100%); aspect-ratio: 589 / 389; }
 .snapshot .paper { position: absolute; height: auto; width: 58%; left: 34%; top: -12%; transform: rotate(8deg); filter: var(--sticker-shadow); }
 .snapshot .cam-photo { position: absolute; left: 6.8%; top: 31.6%; width: 47.7%; height: 54.5%; object-fit: cover; object-position: 50% 22%; z-index: 1; transform: rotate(-3deg); transform-origin: 0 0; }
 .snapshot .cam { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; filter: var(--sticker-shadow); transform: rotate(-3deg); transform-origin: 0 0; }
@@ -268,12 +268,13 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .fact span { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 .stack-head { display: flex; justify-content: space-between; margin-bottom: 12px; }
 .stack-head .mono:first-child { font-weight: 600; }
-.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .skills { grid-template-columns: 1fr; } }
 .skill { background: var(--window); border: 2px solid var(--frame); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: 4px 4px 0 color-mix(in srgb, var(--frame) 22%, transparent); }
-.skills .skill:nth-child(4n+2) { background: color-mix(in srgb, var(--pink-soft) 70%, var(--window)); }
-.skills .skill:nth-child(4n+3) { background: color-mix(in srgb, var(--fill) 55%, var(--window)); }
-.skills .skill:nth-child(4n+4) { background: color-mix(in srgb, var(--lav) 22%, var(--window)); }
+.skill.pink { background: color-mix(in srgb, var(--pink-soft) 70%, var(--window)); border-color: color-mix(in srgb, var(--pink) 60%, var(--frame)); }
+.skill.yellow { background: var(--tint-yellow); }
+@media (prefers-reduced-motion: no-preference) { .skill { transition: transform .2s ease; } .skill:hover { transform: translateY(-4px) rotate(-0.6deg); } }
 .skill h3 { font-family: var(--f-title); font-weight: 400; font-size: 1.4rem; line-height: 1.1; }
 .skill ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; font-family: var(--f-mono); font-size: 0.8rem; }
 .skill li::before { content: "♡ "; color: var(--accent); }
@@ -283,11 +284,38 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .skill.sec { background: var(--sec-bg); color: var(--sec-fg); border-color: var(--sec-bg); background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 14px 14px; }
 .skill.sec .eyebrow { color: var(--accent-on-ink); }
 .skill.sec li::before { content: "🔒 "; font-size: 0.8em; }
-.skills .skill.ai { background: linear-gradient(90deg, var(--peri), var(--lav)); border-color: var(--frame); color: #fff; }
+.skills .skill.ai { background: linear-gradient(90deg, var(--pink), #ffc3dc); border-color: #e86fa6; color: #fff; }
 .skill.ai .eyebrow, .skill.ai li::before { color: #fff; }
 .skill.ai li::before { content: "✦ "; }
-.skill.ai ul { grid-template-columns: repeat(3, max-content); column-gap: 28px; }
-@media (max-width: 560px) { .skill.ai ul { grid-template-columns: 1fr; } }
+
+/* ---------- Education ---------- */
+.edu-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: stretch; }
+@media (max-width: 860px) { .edu-grid { grid-template-columns: 1fr; } }
+.timeline { list-style: none; margin: 0; padding: 26px 26px 28px 26px; display: grid; gap: 28px; }
+.tl-item { position: relative; padding-left: 46px; }
+.tl-item::before { content: ""; position: absolute; left: 15px; top: 34px; bottom: -28px; border-left: 2px dashed var(--line); }
+.tl-item:last-child::before { bottom: 0; }
+.tl-dot { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--pink); color: #fff; border: 2px solid var(--ink); font-size: 0.95rem; box-shadow: 2px 2px 0 var(--ink); }
+.tl-years { font-family: var(--f-label); font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin: 6px 0 8px; }
+.tl-years span { color: var(--accent); background: var(--pink-soft); border-radius: 999px; padding: 3px 9px; margin-left: 4px; }
+.tl-item h3 { font-family: var(--f-pixel); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; }
+.tl-degree { margin: 8px 0 0; font-weight: 600; }
+.tl-major { margin: 2px 0 0; color: var(--accent); font-family: var(--f-title); font-size: 1.05rem; }
+.progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px; max-width: 360px; }
+.progress span { height: 16px; border-radius: 4px; border: 2px solid var(--frame); background: var(--window); }
+.progress .on { background: var(--fill-strong); }
+.progress .now { background: repeating-linear-gradient(45deg, var(--pink) 0 6px, #ffc3dc 6px 12px); border-color: #e86fa6; }
+@media (prefers-reduced-motion: no-preference) { .progress .now { background-size: 17px 17px; animation: stripe 1.2s linear infinite; } }
+@keyframes stripe { to { background-position: 17px 0; } }
+.tl-note { margin: 8px 0 0; font-family: var(--f-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.edu-side { display: grid; gap: 20px; }
+.edu-card { border: 2px solid var(--frame); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: 4px 4px 0 color-mix(in srgb, var(--frame) 22%, transparent), var(--glow); }
+.edu-card h3 { font-family: var(--f-title); font-weight: 400; font-size: 1.45rem; line-height: 1.1; }
+.edu-card p { margin: 0; }
+.edu-card .mono { color: var(--muted); margin-top: auto; padding-top: 6px; }
+.edu-card.honors { background: color-mix(in srgb, var(--pink-soft) 75%, var(--window)); border-color: color-mix(in srgb, var(--pink) 60%, var(--frame)); }
+.edu-card.lead { background: var(--window); }
+.stars { color: #f2b705; font-size: 1.3rem; letter-spacing: 0.12em; text-shadow: 1px 1px 0 color-mix(in srgb, var(--ink) 25%, transparent); }
 
 /* ---------- Certifications ---------- */
 .certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -311,16 +339,16 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .mailbox { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 28px; }
 .msg-form .win-bar .crumbs::before { background-image: url("images/stickers/star-button.png"); }
 .msg-body { padding: 18px; display: grid; gap: 6px; background: var(--fill); background-image: repeating-linear-gradient(transparent 0 31px, color-mix(in srgb, var(--pink) 22%, transparent) 31px 32px); color: var(--on-fill); }
-.msg-body label { font-family: var(--f-label); font-size: 0.64rem; text-transform: uppercase; color: #8a2a5c; margin-top: 6px; }
-.msg-body input, .msg-body textarea { font: inherit; color: #3b2547; background: #fffef6; border: 2px solid #f2cf6b; border-radius: 10px; padding: 10px 12px; width: 100%; }
+.msg-body label { font-family: var(--f-label); font-size: 0.64rem; text-transform: uppercase; color: #a8285f; margin-top: 6px; }
+.msg-body input, .msg-body textarea { font: inherit; color: #3a2a20; background: #fffef6; border: 2px solid #f2cf6b; border-radius: 10px; padding: 10px 12px; width: 100%; }
 .msg-body textarea { resize: vertical; min-height: 110px; }
 .msg-body input:focus-visible, .msg-body textarea:focus-visible { outline: 2px dashed #ff7eb6; outline-offset: 2px; border-color: #ff7eb6; }
 .msg-body input:disabled, .msg-body textarea:disabled { opacity: 0.6; }
-.msg-body .btn { margin-top: 12px; justify-content: center; background: #ff7eb6; color: #fff; border-color: #3b2547; box-shadow: 3px 3px 0 #3b2547; }
+.msg-body .btn { margin-top: 12px; justify-content: center; background: #ff7eb6; color: #fff; border-color: #3a2a20; box-shadow: 3px 3px 0 #3a2a20; }
 .msg-body .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-.form-status { margin: 4px 0 0; font-size: 0.92rem; min-height: 1.4em; color: #6e5a73; }
-.form-status.ok { color: #3b2547; font-weight: 600; }
+.form-status { margin: 4px 0 0; font-size: 0.92rem; min-height: 1.4em; color: #74604e; }
+.form-status.ok { color: #3a2a20; font-weight: 600; }
 .form-status.err { color: #b3261e; }
 .email { display: flex; align-items: center; gap: 10px; border: 2px solid var(--frame); background: var(--window); border-radius: 999px; padding: 8px 10px 8px 16px; font-family: var(--f-mono); font-size: 0.9rem; min-width: 0; box-shadow: 3px 3px 0 color-mix(in srgb, var(--frame) 25%, transparent); }
 .email span { user-select: all; overflow-wrap: anywhere; }
@@ -357,10 +385,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
     <a class="logo" href="#home">TYN<b>.</b>OS</a>
     <nav class="nav" aria-label="Main">
-      <a href="#home" class="active">Home</a>
-      <a href="#portfolio">Portfolio</a>
       <a href="#about">About</a>
-      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Works</a>
+      <a href="#certifications">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="status">
@@ -430,6 +459,131 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div>
 </section>
 
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <figure class="snapshot">
+        <img class="paper" src="images/stickers/star-paper.png" alt="" width="448" height="623">
+        <img class="cam-photo" src="images/christeen.jpg" alt="Portrait of Christeen Solis" width="640" height="800">
+        <img class="cam" src="images/stickers/camera.png" alt="" width="589" height="389">
+        <img class="tape" src="images/stickers/kaomoji-tape.png" alt="" width="500" height="134">
+      </figure>
+    </div>
+    <div>
+      <p class="eyebrow">About me</p>
+      <h2 class="big">Design is how it looks. <span class="serif-i">Security</span> is how it holds.</h2>
+      <!-- ✏️ Rewrite these two paragraphs in your own voice -->
+      <p>I'm a fourth-year <strong>Bachelor of Science in Information Technology student majoring in Cybersecurity</strong> at Mapúa Malayan Colleges Laguna, with a passion for <strong>UI/UX design, graphic design, and front-end development</strong>.</p>
+      <p>I enjoy transforming creative ideas into functional, visually appealing, and user-friendly digital experiences. My experience includes designing interfaces, developing web-based systems, and collaborating on technical projects. I also enjoy taking leadership roles, combining creativity, problem-solving, and teamwork to bring ideas to life.</p>
+      <div class="facts">
+        <div class="fact"><b>Laguna, PH</b><span>Based in</span></div>
+        <div class="fact"><b>Design × Security</b><span>What I do</span></div>
+        <div class="fact"><b>Class of 2027</b><span>BSIT · Cybersecurity</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="section band" id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">School log</p>
+        <h2>Education</h2>
+      </div>
+      <p>Where I'm learning to build things that look good and stay safe.</p>
+    </div>
+    <div class="edu-grid">
+      <div class="window edu-main">
+        <div class="win-bar"><span class="crumbs"><b>education.log</b></span></div>
+        <ol class="timeline">
+          <li class="tl-item now">
+            <span class="tl-dot" aria-hidden="true">♡</span>
+            <p class="tl-years">2023 — 2027 · <span>In progress</span></p>
+            <h3>Mapúa Malayan Colleges Laguna</h3>
+            <p class="tl-degree">Bachelor of Science in Information Technology</p>
+            <p class="tl-major">Major in Cybersecurity</p>
+            <div class="progress" role="img" aria-label="Fourth year of four">
+              <span class="on"></span><span class="on"></span><span class="on"></span><span class="on now"></span>
+            </div>
+            <p class="tl-note">4th year · graduating with the Class of 2027</p>
+          </li>
+          <!-- ✏️ Add your senior high school here, for example:
+          <li class="tl-item">
+            <span class="tl-dot" aria-hidden="true">✿</span>
+            <p class="tl-years">20XX — 2023</p>
+            <h3>School name</h3>
+            <p class="tl-degree">Senior High School · Strand</p>
+          </li>
+          -->
+        </ol>
+      </div>
+      <div class="edu-side">
+        <div class="edu-card honors">
+          <p class="eyebrow">Honors</p>
+          <h3>Dean's Lister</h3>
+          <p class="stars" aria-label="Six terms">★★★★★★</p>
+          <p class="mono">Six terms · 2023–2026</p>
+        </div>
+        <div class="edu-card lead">
+          <p class="eyebrow">Leadership</p>
+          <h3>Creatives Director</h3>
+          <p>Infotech Society (ITSOC)</p>
+          <p class="mono">2025–26</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section skills-sec" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Toolbox</p>
+        <h2>Skills</h2>
+      </div>
+      <p>What I design with, build with, and protect with.</p>
+    </div>
+    <!-- ✏️ Edit the tools in each card so they match what you really use -->
+    <div class="skills">
+        <div class="skill sec">
+          <p class="eyebrow">Specialization</p>
+          <h3>Cybersecurity</h3>
+          <ul><li>AES-256 &amp; encryption</li><li>RBAC · authentication &amp; authorization</li><li>Security testing</li><li>Vulnerability management</li></ul>
+        </div>
+        <div class="skill pink">
+          <p class="eyebrow">Design &amp; Creative</p>
+          <h3>Design</h3>
+          <ul><li>UI/UX Design</li><li>Graphic Design</li><li>Web Design</li><li>Visual Design</li></ul>
+        </div>
+        <div class="skill yellow">
+          <p class="eyebrow">Development</p>
+          <h3>Languages</h3>
+          <ul><li>HTML · CSS · JavaScript</li><li>PHP · Python</li><li>C# · C++</li><li>SQL</li></ul>
+        </div>
+        <div class="skill">
+          <p class="eyebrow">Tools &amp; Technologies</p>
+          <h3>Tools</h3>
+          <ul><li>Git &amp; GitHub</li><li>VS Code · Visual Studio</li><li>PostgreSQL</li><li>Render</li></ul>
+        </div>
+        <div class="skill yellow">
+          <p class="eyebrow">Soft Skills</p>
+          <h3>How I Work</h3>
+          <ul><li>Leadership</li><li>Team Collaboration</li><li>Problem-Solving</li><li>Creativity</li><li>Communication</li></ul>
+        </div>
+        <div class="skill ai">
+          <p class="eyebrow">AI Tools</p>
+          <h3>AI I Work With</h3>
+          <ul><li>Claude Code</li><li>Claude</li><li>ChatGPT</li></ul>
+        </div>
+      </div>
+  </div>
+</section>
+
 <!-- ============ PORTFOLIO ============ -->
 <section class="section band" id="portfolio">
   <div class="wrap">
@@ -467,68 +621,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div>
 </section>
 
-<!-- ============ ABOUT + SKILLS ============ -->
-<section class="section about" id="about">
-  <div class="wrap about-grid">
-    <div>
-      <figure class="snapshot">
-        <img class="paper" src="images/stickers/star-paper.png" alt="" width="448" height="623">
-        <img class="cam-photo" src="images/christeen.jpg" alt="Portrait of Christeen Solis" width="640" height="800">
-        <img class="cam" src="images/stickers/camera.png" alt="" width="589" height="389">
-        <img class="tape" src="images/stickers/kaomoji-tape.png" alt="" width="500" height="134">
-      </figure>
-      <p class="eyebrow">About me</p>
-      <h2 class="big">Design is how it looks. <span class="serif-i">Security</span> is how it holds.</h2>
-      <!-- ✏️ Rewrite these two paragraphs in your own voice -->
-      <p>I'm a fourth-year <strong>Bachelor of Science in Information Technology student majoring in Cybersecurity</strong> at Mapúa Malayan Colleges Laguna, with a passion for <strong>UI/UX design, graphic design, and front-end development</strong>.</p>
-      <p>I enjoy transforming creative ideas into functional, visually appealing, and user-friendly digital experiences. My experience includes designing interfaces, developing web-based systems, and collaborating on technical projects. I also enjoy taking leadership roles, combining creativity, problem-solving, and teamwork to bring ideas to life.</p>
-    </div>
-    <div>
-      <div class="stack-head"><span class="mono">My skills</span><span class="mono" style="color:var(--muted)">6 areas</span></div>
-      <!-- ✏️ Edit the tools in each card so they match what you really use -->
-      <div class="skills">
-        <div class="skill sec wide">
-          <p class="eyebrow">Specialization</p>
-          <h3>Cybersecurity</h3>
-          <ul><li>AES-256 &amp; encryption</li><li>RBAC · authentication &amp; authorization</li><li>Security testing</li><li>Vulnerability management</li></ul>
-        </div>
-        <div class="skill">
-          <p class="eyebrow">Design &amp; Creative</p>
-          <h3>Design</h3>
-          <ul><li>UI/UX Design</li><li>Graphic Design</li><li>Web Design</li><li>Visual Design</li></ul>
-        </div>
-        <div class="skill">
-          <p class="eyebrow">Development</p>
-          <h3>Languages</h3>
-          <ul><li>HTML · CSS · JavaScript</li><li>PHP · Python</li><li>C# · C++</li><li>SQL</li></ul>
-        </div>
-        <div class="skill">
-          <p class="eyebrow">Tools &amp; Technologies</p>
-          <h3>Tools</h3>
-          <ul><li>Git &amp; GitHub</li><li>VS Code · Visual Studio</li><li>PostgreSQL</li><li>Render</li></ul>
-        </div>
-        <div class="skill">
-          <p class="eyebrow">Soft Skills</p>
-          <h3>How I Work</h3>
-          <ul><li>Leadership</li><li>Team Collaboration</li><li>Problem-Solving</li><li>Creativity</li><li>Communication</li></ul>
-        </div>
-        <div class="skill wide ai">
-          <p class="eyebrow">AI Tools</p>
-          <h3>AI I Work With</h3>
-          <ul><li>Claude Code</li><li>Claude</li><li>ChatGPT</li></ul>
-        </div>
-      </div>
-      <div class="facts">
-        <div class="fact"><b>Dean's Lister</b><span>Six terms · 2023–2026</span></div>
-        <div class="fact"><b>Creatives Director</b><span>Infotech Society · 2025–26</span></div>
-        <div class="fact"><b>BSIT · Cybersecurity</b><span>Mapúa MCL · Class of 2027</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CERTIFICATIONS ============ -->
-<section class="section band" id="certifications">
+<section class="section" id="certifications">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -543,7 +637,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section class="section contact" id="contact">
+<section class="section band contact" id="contact">
   <div class="wrap">
     <img class="sticker flower" src="images/stickers/pixel-flower.png" alt="" width="360" height="630">
     <div class="contact-grid">
