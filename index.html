@@ -739,7 +739,9 @@ const FOLDERS = [
     image: "images/shop-app.jpg",
     desc: "10th Ave. Studio, a dance studio app (customer and admin views) I led as Project Leader, UI/UX and Documentation Lead on a team of five. Also a clickable shopping app prototype and the student and admin interfaces of ProfilePath.",
     posts: [
-      { url: "images/tenth-ave-studio.jpg", label: "10th Ave. Studio · Preview" },
+      { url: "https://www.figma.com/proto/QTKXo3vjTsgcDYmmu9VuWP/Untitled?node-id=0-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=872%3A35964", label: "10th Ave. Studio · Customer prototype" },
+      { url: "https://www.figma.com/proto/QTKXo3vjTsgcDYmmu9VuWP/Untitled?node-id=137-132&p=f&scaling=scale-down&content-scaling=fixed&page-id=1%3A3&starting-point-node-id=137%3A132", label: "10th Ave. Studio · Admin prototype" },
+      { url: "images/tenth-ave-studio.jpg", label: "10th Ave. Studio · Screenshots" },
       { url: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", label: "Shopping app · Figma prototype" },
       { url: "https://profilepath-careerprofilingsystem.onrender.com/student-login", label: "ProfilePath · live site" },
     ] },
@@ -781,7 +783,7 @@ const WORKS = [
     tools: "Canva", year: "2023–25", link: "#home", linkLabel: "4 posts", folder: "ccis" },
   { title: "10th Ave. Studio", sub: "Dance studio app: class booking, studio rentals, promo cards and QR attendance, with a customer view and an admin view",
     client: "Team project (5 members) · Project Leader, UI/UX & Documentation Lead", category: "Design",
-    tools: "Figma", year: "2025–26", link: "images/tenth-ave-studio.jpg", linkLabel: "Preview" },
+    tools: "Figma", year: "2025–26", link: "https://www.figma.com/proto/QTKXo3vjTsgcDYmmu9VuWP/Untitled?node-id=0-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=872%3A35964", linkLabel: "Prototype" },
   { title: "Fashion · Lifestyle · Home Products", sub: "Mobile shopping app: home, product listing, cart and checkout",
     client: "UI/UX · Mobile app prototype", category: "Design",
     tools: "Figma", year: "2025", link: "https://www.figma.com/proto/apUwlNzRmwmqoEcL8XyjmS/Untitled?node-id=4-34&starting-point-node-id=4%3A34", linkLabel: "Prototype" },
@@ -822,7 +824,7 @@ function showFolder(id) {
     ? { url: p, label: String(i + 1).padStart(2, "0") }
     : { url: p.url, label: (f.posts.length > 1 ? String(i + 1).padStart(2, "0") + " · " : "") + p.label });
   let label = `Pubmats on Facebook (${items.length})`;
-  if (f.id === "uiux" || f.id === "personal") label = `Projects (${items.length})`;
+  if (f.id === "uiux" || f.id === "personal") label = `Links (${items.length})`;
   if (f.id === "dev") { items = WORKS.filter(w => w.category === "Development" && !w.personal).map(w => ({ url: w.link, label: w.title + (w.link ? "" : " · not public") })); label = `Projects (${items.length})`; }
   if (f.id === "certs") { items = CERTS.map(c => ({ url: c.link || "", label: c.issuer + " · " + c.name })); label = `Credentials (${items.length})`; }
   if (!items.length) label = "Contents";
